@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - 'iojs'
+
+branches:
+  only:
+    - master
+
+script:
+  - gulp karma --reporters='dots'
+
+notifications:
+  email:
+    recipients:
+      - chrisleedavis@gmail.com
