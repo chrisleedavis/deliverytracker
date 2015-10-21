@@ -7,7 +7,7 @@ branches:
     - master
 
 script:
-  - gulp test
+  - gulp test-run-once
 
 notifications:
   email:
