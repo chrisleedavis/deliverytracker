@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delivery Tracker</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- build:libcss -->
+    <!-- endbuild -->
+    <!-- build:appcss -->
+    <!-- endbuild -->
+</head>
+<body>
+<div data-ng-app="dtApp">
+    <div data-ng-cloak data-ng-controller="NavCtrl">
+        <ul class="navigation">
+            <li data-ng-click="redirect('/')" class="header">
+                <span>Delivery Tracker</span>
+            </li>
+            <li data-ng-click="redirect('/')" data-ng-class="{active: isActive(undefined)}">
+                <span>Home</span>
+            </li>
+            <li data-ng-click="redirect('/clients/clients')" data-ng-class="{active: isActive('clients')}">
+                <span>Clients</span>
+            </li>
+        </ul>
+    </div>
+    <div data-ng-view></div>
+</div>
+<!-- build:lib -->
+<!-- endbuild -->
+<!-- build:app -->
+<!-- endbuild -->
+</body>
+</html>

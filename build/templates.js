@@ -10,13 +10,13 @@
             .pipe(htmlmin({collapseWhitespace: true}))
             .pipe(ngTemplates({
                 filename: "templates.js",
-                module: "acmeTemplates",
+                module: "dtTemplates",
                 standalone: true,
                 path: function (path, base) {
                     return path.replace(base, "/templates/");
                 }
             }))
-            .pipe(gulp.dest("./src/_generatedTemplates"));
+            .pipe(gulp.dest("./src/app/_generatedTemplates"));
     });
 
 }());
