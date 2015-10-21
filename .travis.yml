@@ -7,7 +7,7 @@ branches:
     - master
 
 script:
-  - gulp karma --reporters='dots'
+  - gulp test
 
 notifications:
   email:

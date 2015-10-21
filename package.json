@@ -1,11 +1,16 @@
 {
   "license": "UNLICENSED",
   "name": "Delivery.Tracker",
+  "description": "Delivery Tracker is a system, which allows consumers the ability to view their deliverer of goods and services for verification purposes.",
   "version": "0.0.1",
   "engines": {
     "node": ">= 4.0",
     "iojs": ">= 3.0",
     "npm": ">= 2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisleedavis/deliverytracker.git"
   },
   "dependencies": {
     "angular": "~1.4.7",
