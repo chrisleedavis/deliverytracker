@@ -72,7 +72,7 @@ var gulp = require("gulp"),
             });
 
         return tapPromise.then(function() {
-            replaceFn(options)
+            replaceFn(options);
         });
     };
 
