@@ -12,7 +12,7 @@ var gulp = require("gulp"),
         };
 
         return gulp.src(["!./src/server/server.js", "./src/app/**/*.js"])
-            .pipe(jshint(globals.getJSHintConfig()))
+            .pipe(jshint())
             .pipe(jshint.reporter(stylish))
             .pipe(jshint.reporter("fail"))
             .on("end", function() {

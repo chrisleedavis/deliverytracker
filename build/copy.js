@@ -10,7 +10,7 @@ gulp.task("copy-static-content", function() {
 
 gulp.task("copy-server", function(){
     return gulp.src("./src/server/server.js")
-        .pipe(jshint(globals.getJSHintConfig()))
+        .pipe(jshint())
         .pipe(jshint.reporter(stylish))
         .pipe(jshint.reporter("fail"))
         .pipe(gulp.dest("./dist"));

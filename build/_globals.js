@@ -25,21 +25,5 @@ module.exports = {
         return [
             "./node_modules/angular-material/angular-material.css"
         ];
-    },
-    getJSHintConfig: function() {
-        return {
-            node: true,
-            undef: true,
-            eqeqeq: true,
-            globals: {
-                angular: true,
-                _: true,
-                beforeEach: true,
-                describe: true,
-                inject: true,
-                it: true,
-                expect: true
-            }
-        };
     }
 };
