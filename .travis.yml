@@ -9,14 +9,6 @@ branches:
 script:
   - gulp ngTemplates test --prod
 
-after_script:
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < coverage/**/lcov.info
-
-addons:
-  code_climate:
-    secure: "qs+Ni/PXS6thBJSJWqeqekgcPpxs+bWsXk1DiBHUAu7cadwxUMiAYzXy0Xv6nHM1KZoZe+CPWFMHFFXrFRZvMDZHX9EFyTNjNzLhlSaktIrganbl5v08eIwk4BRgQOC/qOLdw/HTqH7BJoRKv1sHVbvhpQYxZW6bQHqb9pR907yH91aK1VcmoTZkUYtSgKKgJB0wYgJKow9ZjPfhopn8ykXHqa9zBrKeY9UKJ2xuGwg++GuDNhsk6iTmK+1pV3JK/dO4P9Hr104WCGARjagXLwEqt99JBYhaqJGzyKds5YHCYRhYuac6Y96pFzt1OWKpkls5PuK4iC80liO4chzbJc4O4hNsqIYfMmg/o/12VQGYfQ4DCGahIYjCVx5EIkM+XNo34V1vhUyj/SuDpVaMkyCSLO46Y9UvKYudxY+T8Ux2mBCL/y4FPthVb0+CUUzOO/y1fcxKNhbgcN/ngTLgUYpW0/ILrSZ/nMVSZqmVnKc5rmI9vwa81lVrrhqGnU44XWFWsr79a/aQGK2OUKc6xMSDASr7yYHMoK+/8D0hP/Xo0oWjccgUdYagTgssKyGMjDWQEhwTK83pjthnu5Md7fXxvxjZv2L9Y7HKr4/q6Ep0rmHLM2GspGBATntWcOFfIyxyG/5ADnAzQWpzHHXh8hdxdOGkcVotOGHWIc/3tMo="
-
 notifications:
   email:
     recipients:
