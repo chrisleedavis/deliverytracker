@@ -1,4 +1,5 @@
-# Delivery Tracker [![Build Status][travis-ci-image]][travis-ci-url] [![Code Climate][code-climate-image]][code-climate-url] [![Coverage Status][coveralls-image]][coveralls-url]
+# Delivery Tracker 
+[![Build Status][travis-ci-image]][travis-ci-url] [![Code Climate][code-climate-image]][code-climate-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
 [travis-ci-url]: https://travis-ci.org/chrisleedavis/deliverytracker
 [travis-ci-image]: https://api.travis-ci.org/chrisleedavis/deliverytracker.svg
