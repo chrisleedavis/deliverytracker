@@ -31,7 +31,7 @@ gulp.task("test", function(){
     return runTest(globals.isProduction);
 });
 
-gulp.task("coveralls", ["test"], function() {
+gulp.task("coveralls", function() {
     return gulp.src("./coverage/**/lcov.info")
         .pipe(coveralls());
 });
