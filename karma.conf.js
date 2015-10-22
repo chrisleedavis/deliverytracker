@@ -4,7 +4,7 @@ var globals = require("./build/_globals.js"),
     libFiles = globals.getLibSources(),
     appFiles = globals.getAppSources();
 
-libFiles.push("./node_modules/angular-mocks/angular-mocks.js")
+libFiles.push("./node_modules/angular-mocks/angular-mocks.js");
 appFiles = _.without(appFiles, "!./src/server/server.js", "!./src/**/*.spec.js");
 files = _.union(libFiles, appFiles);
 
