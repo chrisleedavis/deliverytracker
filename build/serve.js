@@ -1,13 +1,17 @@
-(function() {
-    "use strict";
+var gulp = require("gulp"),
+    globals = require("./_globals.js"),
+    productionFn = function() {
+        var exec = require("child_process").exec,
+            shell = exec("node ./dist/server.js --prod");
 
-    var gulp = require("gulp"),
-        liveServer = require("gulp-live-server"),
-        watch = require("gulp-watch");
-
-    gulp.task("start-server", function() {
-
-        var serverPath = "./dist/server.js",
+        shell.stdout.on("data", function(data) {
+            console.log(data);
+        });
+    },
+    developmentFn = function() {
+        var watch = require("gulp-watch"),
+            serverPath = "./dist/server.js",
+            liveServer = require("gulp-live-server"),
             server = liveServer.new(serverPath);
 
         server.start();
@@ -21,6 +25,9 @@
         //add watches for application
         gulp.watch("./src/public/**/*.{html,css,png}", ["replace"]);
         gulp.watch(["./src/**/*.html", "!./src/public/**/*.html"], ["ngTemplates"]);
-    });
+    };
 
-}());
+gulp.task("start-server", function() {
+
+    return globals.isProduction ? productionFn() : developmentFn();
+});

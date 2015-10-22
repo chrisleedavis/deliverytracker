@@ -7,7 +7,7 @@ branches:
     - master
 
 script:
-  - gulp ngTemplates test-run-once
+  - gulp ngTemplates test --prod
 
 notifications:
   email:

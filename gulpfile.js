@@ -1,6 +1,1 @@
-(function() {
-    "use strict";
-
-    require("require-dir")("./build");
-
-}());
+require("require-dir")("./build");
