@@ -4,12 +4,18 @@ var gulp = require("gulp"),
     jshint = require("gulp-jshint"),
     stylish = require("jshint-stylish"),
     Karma = require("karma").Server,
-    runTest = function(isSingleRun) {
+    runTest = function(isProduction) {
 
         var config = {
             configFile: process.cwd() + "/karma.conf.js",
-            singleRun: isSingleRun
+            singleRun: isProduction
         };
+
+        if (!isProduction) {
+            config.coverageReporter = {
+                type: "text" //change from text to text-summary for details or summary
+            };
+        }
 
         return gulp.src(["!./src/server/server.js", "./src/app/**/*.js"])
             .pipe(jshint())
@@ -21,5 +27,5 @@ var gulp = require("gulp"),
     };
 
 gulp.task("test", function(){
-    return runTest(globals.isProduction ? true : false);
+    return runTest(globals.isProduction);
 });
