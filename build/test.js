@@ -4,6 +4,7 @@ var gulp = require("gulp"),
     jshint = require("gulp-jshint"),
     stylish = require("jshint-stylish"),
     Karma = require("karma").Server,
+    coveralls = require("gulp-coveralls"),
     runTest = function(isProduction) {
 
         var config = {
@@ -29,3 +30,9 @@ var gulp = require("gulp"),
 gulp.task("test", function(){
     return runTest(globals.isProduction);
 });
+
+gulp.task("coveralls", ["test"], function() {
+    return gulp.src("./coverage/**/lcov.info")
+        .pipe(coveralls());
+});
+
