@@ -19,7 +19,7 @@ module.exports = function (config) {
             "./src/**/!(*.spec).js": ["coverage"]
         },
         coverageReporter: {
-            type: "text" //change from text to text-summary for details or summary
+            type: "lcovonly" //change from text to text-summary for details or summary
         }
     });
 
