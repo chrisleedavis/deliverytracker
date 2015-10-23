@@ -2,7 +2,8 @@
     "use strict";
 
     angular.module("dtApp")
-        .controller("ClientsCtrl", ["$scope", "dtEmployeeModel", function($scope, employeeModel) {
+        .controller("ClientsCtrl",
+        ["$scope", "dtEmployeeModel", "dtNotificationModel", function($scope, employeeModel, notificationModel) {
 
             var triggerTouched = function(form) {
                 _.each(form.$error, function (field) {
@@ -40,19 +41,27 @@
                 } else {
                     employeeModel.saveEmployee($scope.employee).then(function(employee) {
                         $scope.employee = employee;
+                        employeeModel.getEmployees().then(function(employees) {
+                            $scope.employees = employees;
+                        });
                     });
                 }
             };
 
-            $scope.customer = {
-                name: null,
-                email: null
+            $scope.notification = {
+                customer: null,
+                email: null,
+                employeeId: null
             };
 
             $scope.sendNotification = function() {
 
                 if ($scope.notificationForm.$invalid) {
                     triggerTouched($scope.notificationForm);
+                } else {
+                    notificationModel.sendNotification($scope.notification).then(function(notification) {
+                        $scope.notification = notification;
+                    });
                 }
             };
 

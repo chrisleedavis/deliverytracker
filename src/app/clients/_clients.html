@@ -54,26 +54,28 @@
             <div class="layout-sm-column layout-row">
                 <md-input-container class="flex md-input-has-value">
                     <label class="md-static">Employee</label>
-                    <md-select ng-model="employee.firstName"
+                    <md-select data-ng-model="notification.employeeId"
                                aria-label="Employee"
                                required="">
-                        <md-select-value class="md-select-value">
-                        </md-select-value>
+                        <md-option data-ng-value="employee.id"
+                                   ng-repeat="employee in employees">
+                                    {{ employee.fullName }}
+                        </md-option>
                     </md-select>
                 </md-input-container>
 
                 <md-input-container class="flex">
                     <label>Customer Name</label>
-                    <input type="text" name="customerName" data-ng-model="customer.name" required="">
-                    <div data-ng-messages="notificationForm.customerName.$error">
+                    <input type="text" name="notificationCustomer" data-ng-model="notification.customer" required="">
+                    <div data-ng-messages="notificationForm.notificationCustomer.$error">
                         <div data-ng-message="required">required</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container class="flex">
                     <label>Customer Email</label>
-                    <input type="text" name="customerEmail" data-ng-model="customer.email" required="">
-                    <div data-ng-messages="notificationForm.customerEmail.$error">
+                    <input type="text" name="notificationEmail" data-ng-model="notification.email" required="">
+                    <div data-ng-messages="notificationForm.notificationEmail.$error">
                         <div data-ng-message="required">required</div>
                     </div>
                 </md-input-container>

@@ -5,6 +5,7 @@ class Employee {
         this.firstName = data.firstName;
         this.lastName = data.lastName;
         this.image = data.image;
+        this.fullName = this.getFullName();
     }
 
     getFullName() {

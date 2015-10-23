@@ -1,11 +1,13 @@
 let _ = require("lodash"),
+    responseHelper = require("./responseHelper"),
     Employee = require("../models/employeeModel"),
-    employees = [],
-    sendResponse = function(response, data) {
-        response.send({ d: data });
-    };
+    employees = [];
 
-class EmployeeController {
+class EmployeesController {
+
+    __findEmployee(id) {
+        return _.find(employees, { id: id });
+    }
 
     addEmployee(request, response) {
         let employee = new Employee(request.body);
@@ -15,13 +17,13 @@ class EmployeeController {
         employee.id = employees.length + 1;
         employees.push(employee);
 
-        sendResponse(response, employee);
+        responseHelper.sendResponse(response, employee);
     }
 
     findAllEmployees(request, response) {
         console.log("Getting all employees");
 
-        sendResponse(response, employees);
+        responseHelper.sendResponse(response, employees);
     }
 
     findEmployee(request, response) {
@@ -37,4 +39,4 @@ class EmployeeController {
     }
 }
 
-module.exports = EmployeeController;
+module.exports = EmployeesController;

@@ -29,11 +29,29 @@
                                 fn(employee);
                             }
                         };
+                    },
+                    getEmployees: function() {
+                        return {
+                            then: function (fn) {
+                                fn([]);
+                            }
+                        };
+                    }
+                },
+                mockNotificationModel = {
+                    sendNotification: function(notification) {
+                        return {
+                            then: function (fn) {
+                                notification.fromServer = true;
+                                fn(notification);
+                            }
+                        };
                     }
                 };
 
             $rootScope = _$rootScope_;
-            _$controller_("ClientsCtrl", { $scope: $rootScope, dtEmployeeModel: mockEmployeeModel });
+            _$controller_("ClientsCtrl", { $scope: $rootScope, dtEmployeeModel: mockEmployeeModel,
+                dtNotificationModel: mockNotificationModel });
 
             queue = [];
             raised = "raised";
@@ -104,6 +122,17 @@
             $rootScope.uploadImage(file);
             expect($rootScope.employee.image).toEqual(file);
 
+        });
+
+        it("successfully sends notification from server", function() {
+
+            var notification = { foo: "bar" };
+            $rootScope.notification = notification;
+            $rootScope.notificationForm = { $invalid: false };
+
+            expect($rootScope.notification.fromServer).not.toBeTruthy();
+            $rootScope.sendNotification();
+            expect($rootScope.notification.fromServer).toBeTruthy();
         });
 
     });
