@@ -1,5 +1,6 @@
 {
   "node": true,
+  "esnext": true,
   "undef": true,
   "eqeqeq": true,
   "globals": {
@@ -9,6 +10,7 @@
     "describe": true,
     "inject": true,
     "it": true,
-    "expect": true
+    "expect": true,
+    "FileReader": true
   }
 }

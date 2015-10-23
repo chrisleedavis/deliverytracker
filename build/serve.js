@@ -2,7 +2,7 @@ var gulp = require("gulp"),
     globals = require("./_globals.js"),
     productionFn = function() {
         var exec = require("child_process").exec,
-            shell = exec("node ./dist/server.js --prod");
+            shell = exec("node --use-strict ./dist/server.js --prod");
 
         shell.stdout.on("data", function(data) {
             console.log(data);
@@ -10,9 +10,9 @@ var gulp = require("gulp"),
     },
     developmentFn = function() {
         var watch = require("gulp-watch"),
-            serverPath = "./dist/server.js",
             liveServer = require("gulp-live-server"),
-            server = liveServer.new(serverPath);
+            serverPath = "./dist/server.js",
+            server = liveServer(["--use-strict", serverPath]);
 
         server.start();
 

@@ -1,5 +1,92 @@
 <div data-ng-controller="ClientsCtrl">
     <md-content class="md-padding">
-        <h1 class="md-display-2">Future home of clients</h1>
+        <h2>Add Employee</h2>
+        <ng-form name="employeeForm">
+            <div class="layout-sm-column layout-row">
+                <md-input-container class="flex">
+                    <label>Employee #</label>
+                    <input type="text" name="employeeNumber" data-ng-model="employee.employeeNumber" required="">
+                    <div data-ng-messages="employeeForm.employeeNumber.$error">
+                        <div data-ng-message="required">required</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="flex">
+                    <label>First Name</label>
+                    <input type="text" name="firstName" data-ng-model="employee.firstName" required="">
+                    <div data-ng-messages="employeeForm.firstName.$error">
+                        <div data-ng-message="required">required</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="flex">
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" data-ng-model="employee.lastName" required="">
+                    <div data-ng-messages="employeeForm.lastName.$error">
+                        <div data-ng-message="required">required</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="flex">
+                    <button class="md-raised md-primary md-button md-ink-ripple"
+                            type="button"
+                            data-ngf-select="uploadImage($file)"
+                            data-accept="image/*">
+                        <span>Upload Image</span>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </md-input-container>
+
+                <md-input-container class="flex">
+                    <button class="md-raised md-primary md-button md-ink-ripple"
+                            type="submit"
+                            data-ng-click="saveEmployee()">
+                        <span>Save Employee</span>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </md-input-container>
+            </div>
+        </ng-form>
+    </md-content>
+    <md-content class="md-padding">
+        <h2>Notify Customer</h2>
+        <ng-form name="notificationForm">
+            <div class="layout-sm-column layout-row">
+                <md-input-container class="flex md-input-has-value">
+                    <label class="md-static">Employee</label>
+                    <md-select ng-model="employee.firstName"
+                               aria-label="Employee"
+                               required="">
+                        <md-select-value class="md-select-value">
+                        </md-select-value>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="flex">
+                    <label>Customer Name</label>
+                    <input type="text" name="customerName" data-ng-model="customer.name" required="">
+                    <div data-ng-messages="notificationForm.customerName.$error">
+                        <div data-ng-message="required">required</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="flex">
+                    <label>Customer Email</label>
+                    <input type="text" name="customerEmail" data-ng-model="customer.email" required="">
+                    <div data-ng-messages="notificationForm.customerEmail.$error">
+                        <div data-ng-message="required">required</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="flex">
+                    <button class="md-raised md-primary md-button md-ink-ripple"
+                            type="button"
+                            data-ng-click="sendNotification()">
+                        <span>Send Notification</span>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </md-input-container>
+            </div>
+        </ng-form>
     </md-content>
 </div>

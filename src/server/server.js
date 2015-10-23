@@ -1,17 +1,16 @@
-var express = require("express"),
-    globals = require("../build/_globals.js"),
-    server = express(),
-    liveReload;
+let express = require("express"),
+    globals = require("../build/_globals"),
+    Router = require("../src/server/router"),
+    server = express();
 
 if (!globals.isProduction) {
-    liveReload = require("connect-livereload");
+    let liveReload = require("connect-livereload");
     server.use(liveReload());
+    console.log("development mode, using liveReload");
 }
 
-server.use("/", express.static("./dist/public")); //relative to package.json
-server.use("/src", express.static("./src")); //for development mode & debugging support
-server.use("/node_modules", express.static("./node_modules")); //for development mode & debugging support
+new Router().init(express, server);
 
-console.log("acme server is now up...http://localhost:8888");
+console.log("Delivery Tracker server is now up...http://localhost:8888");
 
 server.listen(8888);

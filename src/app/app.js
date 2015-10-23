@@ -1,7 +1,8 @@
 (function(angular) {
     "use strict";
 
-    angular.module("dtApp", ["dtTemplates", "ngMaterial", "ngRoute"])
+    angular.module("dtApp",
+        ["dtTemplates", "ngMaterial", "ngRoute", "ngMessages", "ngFileUpload", "dtServices", "dtModels"])
         .config(["$routeProvider", "$mdThemingProvider", function($routeProvider, $mdThemingProvider) {
             $routeProvider
                 .when("/", {
