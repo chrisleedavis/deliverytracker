@@ -22,7 +22,9 @@
     "angular-route": "~1.4.7",
     "body-parser": "^1.14.1",
     "lodash": "~3.10.1",
-    "ng-file-upload": "^9.1.0"
+    "ng-file-upload": "^9.1.0",
+    "nodemailer": "^1.8.0",
+    "nodemailer-mailgun-transport": "git+https://github.com/orliesaurus/nodemailer-mailgun-transport.git"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.7",
