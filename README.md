@@ -1,4 +1,6 @@
 # Delivery Tracker 
+
+[![Join the chat at https://gitter.im/chrisleedavis/deliverytracker](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/chrisleedavis/deliverytracker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status][travis-ci-image]][travis-ci-url] [![Code Climate][code-climate-image]][code-climate-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
 [travis-ci-url]: https://travis-ci.org/chrisleedavis/deliverytracker
