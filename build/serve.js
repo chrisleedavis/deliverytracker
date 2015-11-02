@@ -2,7 +2,7 @@ var gulp = require("gulp"),
     globals = require("./_globals.js"),
     productionFn = () => {
         var exec = require("child_process").exec,
-            shell = exec("node ./src/server/server.js --prod");
+            shell = exec("SET NODE_ENV=production&&node ./src/server/server.js --prod");
 
         shell.stdout.on("data", (data) => {
             console.log(data);
