@@ -41,6 +41,21 @@ describe("Server Tests", () => {
             console.log("livereload is instantiated");
         });
         mockery.registerMock("./globalErrorHandler", class { });
+        mockery.registerMock("fs", {
+            readFileSync: (ssl) => {
+                console.log(ssl);
+            }
+        });
+        mockery.registerMock("https", {
+            createServer: (config) => {
+                console.log(config);
+                return {
+                    listen: (port) => {
+                        console.log(port);
+                    }
+                };
+            }
+        });
     });
 
     afterEach(() => {
@@ -57,13 +72,13 @@ describe("Server Tests", () => {
 
         expect(consoleLog.length).toEqual(8);
         expect(consoleLog[0]).toEqual("express is instantiated");
-        expect(consoleLog[1]).toEqual("livereload is instantiated");
-        expect(consoleLog[2]).toEqual("using object");
-        expect(consoleLog[3]).toEqual("development mode, using liveReload");
-        expect(consoleLog[4]).toEqual("express is injected");
-        expect(consoleLog[5]).toEqual("server is injected");
-        expect(consoleLog[6]).toEqual("Delivery Tracker server is now up...http://localhost:8888");
-        expect(consoleLog[7]).toEqual("listening on port: 8888");
+        expect(consoleLog[1]).toEqual("express is injected");
+        expect(consoleLog[2]).toEqual("server is injected");
+        expect(consoleLog[3]).toEqual("livereload is instantiated");
+        expect(consoleLog[4]).toEqual("using object");
+        expect(consoleLog[5]).toEqual("development mode, using liveReload");
+        expect(consoleLog[6]).toEqual("listening on port: 8888");
+        expect(consoleLog[7]).toEqual("Delivery Tracker server is now up...http://localhost:8888");
 
         globals.isProduction = isProduction;
     });
@@ -74,12 +89,15 @@ describe("Server Tests", () => {
         globals.isProduction = true;
         let server = require("./server");
 
-        expect(consoleLog.length).toEqual(5);
+        expect(consoleLog.length).toEqual(8);
         expect(consoleLog[0]).toEqual("express is instantiated");
         expect(consoleLog[1]).toEqual("express is injected");
         expect(consoleLog[2]).toEqual("server is injected");
-        expect(consoleLog[3]).toEqual("Delivery Tracker server is now up...http://localhost:8888");
-        expect(consoleLog[4]).toEqual("listening on port: 8888");
+        expect(consoleLog[3]).toEqual("./src/server/config/deliverytracker-key.pem");
+        expect(consoleLog[4]).toEqual("./src/server/config/deliverytracker-cert.pem");
+        expect(consoleLog[5]).toEqual({ key: undefined, cert: undefined });
+        expect(consoleLog[6]).toEqual(8888);
+        expect(consoleLog[7]).toEqual("Delivery Tracker server is now up...https://localhost:8888");
 
         globals.isProduction = isProduction;
     });
