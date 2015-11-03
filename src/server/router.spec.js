@@ -29,12 +29,7 @@ describe("Router Tests", () => {
         //mock out body-parser for verifying calls only
         mockery.registerMock("body-parser", {
             json: (config) => {
-                if (!config) {
-                    configQueue.push("set default json");
-                } else {
-                    configQueue.push(config);
-                }
-
+                configQueue.push(config);
                 return "json being used";
             }
         });
@@ -50,8 +45,16 @@ describe("Router Tests", () => {
             express = { "static": (config) => { configQueue.push(config); }},
             server = {
                 use: (config) => { configQueue.push(config); },
-                post: (config) => { configQueue.push("post: " + config); },
-                get: (config) => { configQueue.push("get: " + config); }
+                route: (config) => {
+                    configQueue.push("route: " + config);
+
+                    let Pipe = class {
+                        post (config) { configQueue.push("post: " + config); return this; }
+                        get (config) { configQueue.push("get: " + config); return this; }
+                    };
+
+                    return new Pipe();
+                }
             },
             router = new Router(express, server);
 
@@ -62,14 +65,14 @@ describe("Router Tests", () => {
         expect(configQueue[3]).toEqual("/src");
         expect(configQueue[4]).toEqual("./node_modules");
         expect(configQueue[5]).toEqual("/node_modules");
-        expect(configQueue[6]).toEqual("set default json");
+        expect(configQueue[6]).toEqual({  });
         expect(configQueue[7]).toEqual("json being used");
-        expect(configQueue[8]).toEqual({ type: 'application/vnd.api+json' });
-        expect(configQueue[9]).toEqual("json being used");
-        expect(configQueue[10]).toEqual("post: /api/employees");
-        expect(configQueue[11]).toEqual("get: /api/employees");
-        expect(configQueue[12]).toEqual("post: /api/notifications");
-        expect(configQueue[13]).toEqual("get: /api/notifications");
+        expect(configQueue[8]).toEqual("route: /api/employees");
+        expect(configQueue[9]).toEqual("post: addEmployee(request, response) {}");
+        expect(configQueue[10]).toEqual("get: findAllEmployees(request, response) {}");
+        expect(configQueue[11]).toEqual("route: /api/notifications");
+        expect(configQueue[12]).toEqual("post: sendNotification(request, response) {}");
+        expect(configQueue[13]).toEqual("get: findAllNotifications(request, response) {}");
     });
 
 });

@@ -7,7 +7,6 @@ let EmployeesController = require("./controllers/employeesController"),
     bodyParser = require("body-parser");
 
 const EMPLOYEE_API_ROOT = "/api/employees",
-      EMPLOYEE_API_ROOT_ID = "/api/employees/:id",
       NOTIFICATION_API_ROOT = "/api/notifications";
 
 class Router {
@@ -17,18 +16,16 @@ class Router {
         server.use("/src", express.static("./src")); //for development mode & debugging support
         server.use("/node_modules", express.static("./node_modules")); //for development mode & debugging support
 
-        // parse application/json
-        server.use(bodyParser.json());
-
-        // parse application/vnd.api+json as json
-        server.use(bodyParser.json({ type: "application/vnd.api+json" }));
+        server.use(bodyParser.json({}));
 
         //web api routing, CRUD = POST|GET|PUT|DELETE
-        server.post(EMPLOYEE_API_ROOT, employees.addEmployee);
-        server.get(EMPLOYEE_API_ROOT, employees.findAllEmployees);
+        server.route(EMPLOYEE_API_ROOT)
+            .post(employees.addEmployee)
+            .get(employees.findAllEmployees);
 
-        server.post(NOTIFICATION_API_ROOT, notifications.sendNotification);
-        server.get(NOTIFICATION_API_ROOT, notifications.findAllNotifications);
+        server.route(NOTIFICATION_API_ROOT)
+            .post(notifications.sendNotification)
+            .get(notifications.findAllNotifications);
     }
 }
 
