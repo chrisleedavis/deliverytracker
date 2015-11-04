@@ -1,9 +1,6 @@
 "use strict";
 
-let mailer = require("nodemailer"),
-    mailGun = require("nodemailer-mailgun-transport"),
-    secureTransporter = require("../config/config").secureTransporter,
-    mongoose = require("mongoose"),
+let mongoose = require("mongoose"),
     requiredAttr = {type: String, required: true},
     notificationSchema = new mongoose.Schema({
         customer: requiredAttr,
