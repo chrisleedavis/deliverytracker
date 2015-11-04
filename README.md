@@ -19,7 +19,7 @@ Delivery Tracker is a system designed to provide consumers with the ability to v
 | Responsive Design | [angular material](https://material.angularjs.org/latest/)    |
 | SPA               | [angular 1.4.7](https://angularjs.org/)                       |
 | Server            | [node 4.2.1](https://nodejs.org/en/)                          |
-| Database (any supported by node)| [default: mongo](https://www.mongodb.org/)      |
+| Database          | [mongo](https://www.mongodb.org/)                             |
 
 ### Environment Configuration
 ./src/server/config/config.js should be used to configure environment
@@ -34,7 +34,6 @@ module.exports = {
         sender: "YOUR SENDER HERE"
     },
 
-    databaseProvider: "YOUR DB PROVIDER HERE",
     databaseUrl: "YOUR DB URL HERE",
     databaseStartCommand: "YOUR START COMMAND HERE"
 

@@ -59,7 +59,7 @@
                                required="">
                         <md-option data-ng-value="employee._id"
                                    ng-repeat="employee in employees">
-                                    {{ employee.fullName }}
+                                    {{ employee.firstName + " " + employee.lastName }}
                         </md-option>
                     </md-select>
                 </md-input-container>

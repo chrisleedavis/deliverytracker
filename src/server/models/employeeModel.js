@@ -1,18 +1,20 @@
 "use strict";
 
-class Employee {
+let mongoose = require("mongoose"),
+    requiredAttr = {type: String, required: true},
+    employeeSchema = new mongoose.Schema({
+        employeeNumber: {
+            type: String,
+            unique: true,
+            required: true
+        },
+        firstName: requiredAttr,
+        lastName: requiredAttr,
+        image: requiredAttr
+    });
 
-    constructor(data) {
-        this.employeeNumber = data.employeeNumber;
-        this.firstName = data.firstName;
-        this.lastName = data.lastName;
-        this.image = data.image;
-        this.fullName = this.getFullName();
-    }
+employeeSchema.set("toJSON", {
+    virtuals: true
+});
 
-    getFullName() {
-        return this.firstName + " " + this.lastName;
-    }
-}
-
-module.exports = Employee;
+module.exports = mongoose.model("Employee", employeeSchema);

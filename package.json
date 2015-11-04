@@ -24,6 +24,7 @@
     "lodash": "~3.10.1",
     "mkdirp": "^0.5.1",
     "mongodb": "^2.0.46",
+    "mongoose": "^4.2.4",
     "ng-file-upload": "^9.1.0",
     "nodemailer": "^1.8.0",
     "nodemailer-mailgun-transport": "git+https://github.com/orliesaurus/nodemailer-mailgun-transport.git",

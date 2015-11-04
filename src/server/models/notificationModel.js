@@ -3,40 +3,28 @@
 let mailer = require("nodemailer"),
     mailGun = require("nodemailer-mailgun-transport"),
     secureTransporter = require("../config/config").secureTransporter,
-    messages = { errors: [], warnings: [], information: []};
+    mongoose = require("mongoose"),
+    requiredAttr = {type: String, required: true},
+    notificationSchema = new mongoose.Schema({
+        customer: requiredAttr,
+        email: requiredAttr,
+        employeeId: {type: String, required: true},
+        messages: {
+            errors: Array,
+            warnings: Array,
+            information: Array
+        },
+        created_at: Date
+    });
 
-class Notification {
+notificationSchema.pre("save", (next) => {
 
-    constructor(data) {
-        this.customer = data.customer;
-        this.email = data.email;
-        this.employeeId = data.employeeId;
-        this.messages = messages;
-        this.date = new Date();
+    if (!this.created_at) {
+        this.created_at = new Date();
     }
 
-    sendNotification(employee) {
+    next();
+});
 
-        let transporter = mailer.createTransport(mailGun(secureTransporter.auth)),
-            mailOptions = {
-                from: secureTransporter.sender,
-                to: this.email,
-                subject: "Delivery Notice",
-                text: "You have a delivery today.",
-                html: '<b>You have a delivery today.</b><img src="' + employee.image + '" alt="Delivery Person" width="150" height="150" />'
-            };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-
-            if(error){
-                messages.errors.push(error);
-            }
-
-            messages.information.push(info.response);
-
-        });
-    }
-}
-
-module.exports = Notification;
+module.exports = mongoose.model("Notification", notificationSchema);
 

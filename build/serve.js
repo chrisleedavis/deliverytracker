@@ -35,14 +35,10 @@ gulp.task("start-server", () => {
 gulp.task("start-mongo-database", () => {
     var config = require("../src/server/config/config"),
         exec = require("child_process").exec,
-        shell;
-
-    if (config.databaseProvider === "mongo") {
         shell = exec(config.databaseStartCommand);
 
-        shell.stdout.on("data", (data) => {
-            console.log(data);
-        });
-    }
+    shell.stdout.on("data", (data) => {
+        console.log(data);
+    });
 
 });

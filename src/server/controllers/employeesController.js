@@ -1,30 +1,36 @@
 "use strict";
 
-let _ = require("lodash"),
-    Db = require("../dao/dbFactory"),
-    database = Db.instance(),
-    responseHelper = require("./responseHelper"),
+let BaseController = require("./baseController"),
     Employee = require("../models/employeeModel");
 
-class EmployeesController {
+class EmployeesController extends BaseController {
+
+    constructor() {
+        super();
+    }
 
     addEmployee(request, response) {
 
-        let employee = new Employee(request.body),
-            callback = (emp) => {
-                responseHelper.sendResponse(response, emp);
-            };
+        let employee = new Employee(request.body);
 
-        database.create("employees", employee, callback);
+        employee.save()
+            .then((e) => {
+                super.handleResponse(response, e);
+            })
+            .catch((err) => {
+                super.handleError(response, err);
+            });
     }
 
     findAllEmployees(request, response) {
 
-        let callback = (employees) => {
-                responseHelper.sendResponse(response, employees);
-            };
-
-        database.read("employees", {}, callback);
+        Employee.find({}).exec()
+            .then((employees) => {
+                super.handleResponse(response, employees);
+            })
+            .catch((err) => {
+                super.handleError(response, err);
+            });
     }
 }
 

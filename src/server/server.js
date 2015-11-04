@@ -4,10 +4,14 @@ let express = require("express"),
     globals = require("../../build/_globals"),
     Router = require("./router"),
     GlobalErrorHandler = require("./globalErrorHandler"),
+    config = require("./config/config"),
+    mongoose = require("mongoose"),
     server = express();
 
 new Router(express, server);
 new GlobalErrorHandler(server);
+mongoose.Promise = Promise;
+mongoose.connect(config.databaseUrl);
 
 if (!globals.isProduction) {
     let liveReload = require("connect-livereload");

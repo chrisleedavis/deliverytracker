@@ -2,23 +2,16 @@
 
 describe("Employee Model Tests", () => {
 
-    let Employee = require("./employeeModel");
+    it("should create schema properly", () => {
 
-    it("should hydrate the class properly with constructor", () => {
-
-        let data = {
-                employeeNumber: "AC12345",
-                firstName: "Joe",
-                lastName: "User",
-                image: "base64TestImage"
-            },
+        let Employee = require("./employeeModel"),
+            data = { employeeNumber: "X2e42", firstName: "test", lastName: "me", image: "blah" },
             employee = new Employee(data);
 
-        expect(data.employeeNumber).toEqual(employee.employeeNumber);
-        expect(data.firstName).toEqual(employee.firstName);
-        expect(data.lastName).toEqual(employee.lastName);
-        expect(data.image).toEqual(employee.image);
-        expect("Joe User").toEqual(employee.fullName);
+        expect(employee.employeeNumber).toEqual(data.employeeNumber);
+        expect(employee.firstName).toEqual(data.firstName);
+        expect(employee.lastName).toEqual(data.lastName);
+        expect(employee.image).toEqual(data.image);
     });
 
 });
