@@ -31,7 +31,7 @@
 
                 var self = this,
                     defer = $q.defer(),
-                    saveOperation = employee.id && employee.id > 0 ? "update" : "save";
+                    saveOperation = employee._id && employee._id > 0 ? "update" : "save";
 
                 employeeService[saveOperation](employee, function(data) {
 

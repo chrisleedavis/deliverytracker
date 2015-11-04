@@ -19,7 +19,6 @@
                 };
 
             $scope.employee = {
-                _id: null,
                 employeeNumber: null,
                 firstName: null,
                 lastName: null,

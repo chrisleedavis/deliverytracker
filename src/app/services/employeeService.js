@@ -3,7 +3,7 @@
 
     angular.module("dtServices").factory("dtEmployeeService", ["dtResourceService",
         function(resourceService) {
-            return resourceService("api/employees/:id", { id: "@id" }, {});
+            return resourceService("api/employees/:id", { id: "@_id" }, {});
         }]);
 
 }(angular));

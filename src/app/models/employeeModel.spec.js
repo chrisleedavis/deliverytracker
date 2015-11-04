@@ -13,9 +13,9 @@
         beforeEach(function () {
 
             employees = [
-                { id: 1, employeeNumber: "X1234", firstName: "Bob", lastName: "Marley", image: "foo"},
-                { id: 2, employeeNumber: "890", firstName: "Richard", lastName: "Nixon", image: "bar"},
-                { id: 3, employeeNumber: "H1231H", firstName: "Mary", lastName: "Hart", image: "test"}
+                { _id: 1, employeeNumber: "X1234", firstName: "Bob", lastName: "Marley", image: "foo"},
+                { _id: 2, employeeNumber: "890", firstName: "Richard", lastName: "Nixon", image: "bar"},
+                { _id: 3, employeeNumber: "H1231H", firstName: "Mary", lastName: "Hart", image: "test"}
             ];
 
             inject(function (dtEmployeeModel, $timeout, $httpBackend) {
@@ -56,7 +56,7 @@
         it("should create employee appropriately from API", function () {
 
             var employee = employees[2];
-            delete employee.id;
+            delete employee._id;
 
             httpMock.when("POST", "api/employees").respond({ d: employee });
 
