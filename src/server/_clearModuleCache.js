@@ -1,6 +1,6 @@
 "use strict";
 
-let _ = require("lodash");
+const _ = require("lodash");
 
 module.exports = () => {
     //make sure module can be loaded for each test

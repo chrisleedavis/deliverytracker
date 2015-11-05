@@ -1,6 +1,6 @@
 "use strict";
 
-let BaseController = require("./baseController"),
+const BaseController = require("./baseController"),
     Employee = require("../models/employeeModel");
 
 class EmployeesController extends BaseController {
@@ -11,8 +11,9 @@ class EmployeesController extends BaseController {
 
     addEmployee(request, response) {
 
-        let employee = new Employee(request.body);
+        const employee = new Employee(request.body);
 
+        employee.createdBy = request.user._id;
         employee.save()
             .then((e) => {
                 super.handleResponse(response, e);

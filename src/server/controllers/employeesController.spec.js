@@ -6,7 +6,6 @@ describe("Employees Controller Tests", () => {
         mockery = require("mockery"),
         clearModuleCache = require("../_clearModuleCache"),
         employee,
-        employees,
         employeeQueue,
         error;
 
@@ -54,7 +53,7 @@ describe("Employees Controller Tests", () => {
                         return {
                             then: (fn) => {
 
-                                employees = [{ firstName: "test", lastName: "me" }, { firstName: "foo", lastName: "bar" }];
+                                const employees = [{ firstName: "test", lastName: "me" }, { firstName: "foo", lastName: "bar" }];
                                 fn(employees);
 
                                 return {
@@ -89,7 +88,7 @@ describe("Employees Controller Tests", () => {
     it("should add/get employees properly", () => {
         let EmployeesController = require("./employeesController"),
             employees = new EmployeesController(),
-            request = { body: employee },
+            request = { body: employee, user: { _id: 2 } },
             response = { send: function(data) { employeeQueue.push(data); } };
 
         employees.addEmployee(request, response);
@@ -105,7 +104,7 @@ describe("Employees Controller Tests", () => {
     it("should send error when attempting to add/get employees", () => {
         let EmployeesController = require("./employeesController"),
             employees = new EmployeesController(),
-            request = { body: employee },
+            request = { body: employee, user: { _id: 2 } },
             response = { send: function(data) { employeeQueue.push(data); } };
 
         const errorMessage = "An error occurred.  Please contact the system administrator.";

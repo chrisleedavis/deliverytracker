@@ -1,6 +1,6 @@
 "use strict";
 
-let mongoose = require("mongoose"),
+const mongoose = require("mongoose"),
     requiredAttr = {type: String, required: true},
     notificationSchema = new mongoose.Schema({
             customer: requiredAttr,
@@ -10,7 +10,8 @@ let mongoose = require("mongoose"),
                 errors: Array,
                 warnings: Array,
                 information: Array
-            }
+            },
+            createdBy: requiredAttr
         },
         {
            timestamps: true //get createdAt, updatedAt fields

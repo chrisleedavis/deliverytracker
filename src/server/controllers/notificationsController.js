@@ -1,6 +1,6 @@
 "use strict";
 
-let BaseController = require("./baseController"),
+const BaseController = require("./baseController"),
     Notification = require("../models/notificationModel"),
     Mailer = require("../models/mailerModel"),
     Employee = require("../models/employeeModel"),
@@ -13,14 +13,15 @@ class NotificationsController extends BaseController {
     }
 
     sendNotification(request, response) {
-        let notification = new Notification(request.body);
+        const notification = new Notification(request.body);
 
         Employee.findById(notification.employeeId)
             .exec()
             .then((employee) => {
                 if (employee) {
-                    let mailer = new Mailer();
+                    const mailer = new Mailer();
                     mailer.sendNotification(notification, employee);
+                    notification.createdBy = request.user._id;
                     notification.save()
                         .then((n) => {
                             super.handleResponse(response, n);

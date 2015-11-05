@@ -1,17 +1,18 @@
 "use strict";
 
-let mkdirp = require("mkdirp"),
+const mkdirp = require("mkdirp"),
     logDirectory = "./logs",
     options = {
         logDirectory: logDirectory,
         fileNamePattern: "deliverytracker-<DATE>.log",
         dateFormat: "YYYY.MM.DD"
     },
-    instance,
     createInstance = () => {
         mkdirp(logDirectory);
         return require("simple-node-logger").createRollingFileLogger(options);
     };
+
+let instance;
 
 module.exports = {
     instance: () => {

@@ -1,6 +1,6 @@
 "use strict";
 
-let express = require("express"),
+const express = require("express"),
     globals = require("../../build/_globals"),
     Router = require("./router"),
     GlobalErrorHandler = require("./globalErrorHandler"),
@@ -14,13 +14,13 @@ mongoose.Promise = Promise;
 mongoose.connect(config.databaseUrl);
 
 if (!globals.isProduction) {
-    let liveReload = require("connect-livereload");
+    const liveReload = require("connect-livereload");
     server.use(liveReload());
     console.log("development mode, using liveReload");
     server.listen(8888);
     console.log("Delivery Tracker server is now up...http://localhost:8888");
 } else {
-    let fs = require("fs"),
+    const fs = require("fs"),
         key = fs.readFileSync("./src/server/config/deliverytracker-key.pem"),
         cert = fs.readFileSync("./src/server/config/deliverytracker-cert.pem"),
         https = require("https");

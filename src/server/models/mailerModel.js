@@ -1,6 +1,6 @@
 "use strict";
 
-let mailer = require("nodemailer"),
+const mailer = require("nodemailer"),
     mailGun = require("nodemailer-mailgun-transport"),
     secureTransporter = require("../config/config").secureTransporter;
 
@@ -8,7 +8,7 @@ class Mailer {
 
     sendNotification(notification, employee) {
 
-        let transporter = mailer.createTransport(mailGun(secureTransporter.auth)),
+        const transporter = mailer.createTransport(mailGun(secureTransporter.auth)),
             mailOptions = {
                 from: secureTransporter.sender,
                 to: notification.email,

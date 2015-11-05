@@ -1,6 +1,6 @@
 "use strict";
 
-let logger = require("./logger");
+const logger = require("./logger");
 
 class GlobalErrorHandler {
 

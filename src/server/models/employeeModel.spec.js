@@ -4,7 +4,7 @@ describe("Employee Model Tests", () => {
 
     it("should create schema properly", () => {
 
-        let Employee = require("./employeeModel"),
+        const Employee = require("./employeeModel"),
             data = { employeeNumber: "X2e42", firstName: "test", lastName: "me", image: "blah" },
             employee = new Employee(data);
 

@@ -1,11 +1,10 @@
 "use strict";
 
-let _ = require("lodash"),
+const _ = require("lodash"),
     logger = require("../logger"),
-    responseHelper = require("./responseHelper");
-
-const VALIDATION_ERROR = "ValidationError",
-      ERROR_RESPONSE = { error: "An error occurred.  Please contact the system administrator." };
+    responseHelper = require("./responseHelper"),
+    VALIDATION_ERROR = "ValidationError",
+    ERROR_RESPONSE = { error: "An error occurred.  Please contact the system administrator." };
 
 class BaseController {
 
@@ -17,8 +16,8 @@ class BaseController {
 
     handleError(response, err) {
 
-        let errorResponse = ERROR_RESPONSE,
-            parseValidationError = (err) => {
+        let errorResponse = ERROR_RESPONSE;
+        const parseValidationError = (err) => {
                 let errorResponse = {
                     error: "Validation error occurred",
                     errors: []

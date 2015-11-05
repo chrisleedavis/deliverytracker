@@ -14,7 +14,16 @@ describe("Router Tests", () => {
             warnOnUnregistered: false
         });
 
-        //mock out controllers for dbFactory hijacking
+        //mock out dependencies
+        mockery.registerMock("passport", {
+            initialize: () => {
+                return "passport initialized";
+            }
+        });
+        mockery.registerMock("./controllers/authenticationController",
+            {
+                authenticate: () => {}
+            });
         mockery.registerMock("./controllers/employeesController",
             class {
                 addEmployee(request, response) {}
@@ -24,6 +33,11 @@ describe("Router Tests", () => {
             class {
                 sendNotification(request, response) {}
                 findAllNotifications(request, response) {}
+            });
+        mockery.registerMock("./controllers/usersController",
+            class {
+                addUser(request, response) {}
+                findAllUsers(request, response) {}
             });
 
         //mock out body-parser for verifying calls only
@@ -49,8 +63,8 @@ describe("Router Tests", () => {
                     configQueue.push("route: " + config);
 
                     let Pipe = class {
-                        post (config) { configQueue.push("post: " + config); return this; }
-                        get (config) { configQueue.push("get: " + config); return this; }
+                        post (auth, config) { configQueue.push("auth: " + auth); configQueue.push("post: " + config); return this; }
+                        get (auth, config) { configQueue.push("auth: " + auth); configQueue.push("get: " + config); return this; }
                     };
 
                     return new Pipe();
@@ -58,21 +72,31 @@ describe("Router Tests", () => {
             },
             router = new Router(express, server);
 
-        expect(configQueue.length).toEqual(14);
-        expect(configQueue[0]).toEqual("./dist");
-        expect(configQueue[1]).toEqual("/");
-        expect(configQueue[2]).toEqual("./src");
-        expect(configQueue[3]).toEqual("/src");
-        expect(configQueue[4]).toEqual("./node_modules");
-        expect(configQueue[5]).toEqual("/node_modules");
-        expect(configQueue[6]).toEqual({  });
-        expect(configQueue[7]).toEqual("json being used");
-        expect(configQueue[8]).toEqual("route: /api/employees");
-        expect(configQueue[9]).toEqual("post: addEmployee(request, response) {}");
-        expect(configQueue[10]).toEqual("get: findAllEmployees(request, response) {}");
-        expect(configQueue[11]).toEqual("route: /api/notifications");
-        expect(configQueue[12]).toEqual("post: sendNotification(request, response) {}");
-        expect(configQueue[13]).toEqual("get: findAllNotifications(request, response) {}");
+        expect(configQueue.length).toEqual(24);
+        expect(configQueue[0]).toEqual("passport initialized");
+        expect(configQueue[1]).toEqual("./dist");
+        expect(configQueue[2]).toEqual("/");
+        expect(configQueue[3]).toEqual("./src");
+        expect(configQueue[4]).toEqual("/src");
+        expect(configQueue[5]).toEqual("./node_modules");
+        expect(configQueue[6]).toEqual("/node_modules");
+        expect(configQueue[7]).toEqual({  });
+        expect(configQueue[8]).toEqual("json being used");
+        expect(configQueue[9]).toEqual("route: /api/employees");
+        expect(configQueue[10]).toEqual("auth: () => {}");
+        expect(configQueue[11]).toEqual("post: addEmployee(request, response) {}");
+        expect(configQueue[12]).toEqual("auth: () => {}");
+        expect(configQueue[13]).toEqual("get: findAllEmployees(request, response) {}");
+        expect(configQueue[14]).toEqual("route: /api/notifications");
+        expect(configQueue[15]).toEqual("auth: () => {}");
+        expect(configQueue[16]).toEqual("post: sendNotification(request, response) {}");
+        expect(configQueue[17]).toEqual("auth: () => {}");
+        expect(configQueue[18]).toEqual("get: findAllNotifications(request, response) {}");
+        expect(configQueue[19]).toEqual("route: /api/users");
+        expect(configQueue[20]).toEqual("auth: () => {}");
+        expect(configQueue[21]).toEqual("post: addUser(request, response) {}");
+        expect(configQueue[22]).toEqual("auth: () => {}");
+        expect(configQueue[23]).toEqual("get: findAllUsers(request, response) {}");
     });
 
 });

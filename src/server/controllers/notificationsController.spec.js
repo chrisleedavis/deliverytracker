@@ -5,13 +5,15 @@ describe("Notifications Controller Tests", () => {
     let mockery = require("mockery"),
         _ = require("lodash"),
         clearModuleCache = require("../_clearModuleCache"),
-        notificationQueue,
-        notifications,
         employees,
+        notifications,
+        notificationQueue,
         error;
 
     beforeEach(() => {
 
+        employees = [{ _id: "56", firstName: "test", lastName: "me" }, { _id: "78", firstName: "foo", lastName: "bar" }];
+        notifications = [{ _id: "56" }, { _id: "78" }];
         notificationQueue = [];
         error = undefined;
 
@@ -51,7 +53,6 @@ describe("Notifications Controller Tests", () => {
                         return {
                             then: (fn) => {
 
-                                notifications = [{ _id: "56" }, { _id: "78" }];
                                 fn(_.filter(notifications, searchObj));
 
                                 return {
@@ -79,7 +80,6 @@ describe("Notifications Controller Tests", () => {
                         return {
                             then: (fn) => {
 
-                                employees = [{ _id: "56", firstName: "test", lastName: "me" }, { _id: "78", firstName: "foo", lastName: "bar" }];
                                 fn(_.find(employees, { _id: _id }));
 
                                 return {
@@ -114,7 +114,7 @@ describe("Notifications Controller Tests", () => {
         let NotificationsController = require("./notificationsController"),
             notifications = new NotificationsController(),
             notification = { employeeId: "78", test: "me" },
-            request = { body: notification },
+            request = { body: notification, user: { _id: 2 } },
             response = { send: () => { } };
 
         error = true;

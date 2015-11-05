@@ -2,19 +2,17 @@
 
 const mongoose = require("mongoose"),
     requiredAttr = {type: String, required: true},
-    employeeSchema = new mongoose.Schema({
-            employeeNumber: {
+    userSchema = new mongoose.Schema({
+            username: {
                 type: String,
                 unique: true,
                 required: true
             },
-            firstName: requiredAttr,
-            lastName: requiredAttr,
-            image: requiredAttr,
+            password: requiredAttr,
             createdBy: requiredAttr
         },
         {
             timestamps: true //get createdAt, updatedAt fields
         });
 
-module.exports = mongoose.model("Employee", employeeSchema);
+module.exports = mongoose.model("User", userSchema);

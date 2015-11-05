@@ -20,6 +20,7 @@
     "angular-messages": "^1.4.7",
     "angular-resource": "^1.4.7",
     "angular-route": "~1.4.7",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "lodash": "~3.10.1",
     "mkdirp": "^0.5.1",
@@ -28,6 +29,8 @@
     "ng-file-upload": "^9.1.0",
     "nodemailer": "^1.8.0",
     "nodemailer-mailgun-transport": "git+https://github.com/orliesaurus/nodemailer-mailgun-transport.git",
+    "passport": "^0.3.0",
+    "passport-http": "^0.3.0",
     "simple-node-logger": "^0.92.21"
   },
   "devDependencies": {
