@@ -17,11 +17,6 @@
 
                         self.employees = employees.d;
                         defer.resolve(self.employees);
-                    },
-                    function(errorResponse) {
-
-                        defer.reject(errorResponse);
-
                     });
 
                 return defer.promise;
@@ -37,11 +32,6 @@
 
                         self.employee = data.d;
                         defer.resolve(self.employee);
-                    },
-                    function(errorResponse) {
-
-                        defer.reject(errorResponse);
-
                     });
 
                 return defer.promise;

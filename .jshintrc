@@ -11,7 +11,11 @@
     "inject": true,
     "it": true,
     "expect": true,
+    "spyOn": true,
+    "jasmine": true,
+    "browserTrigger": true,
     "FileReader": true,
-    "afterEach": true
+    "afterEach": true,
+    "Spinner": true
   }
 }

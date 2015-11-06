@@ -36,12 +36,12 @@
 
         it("should handle error properly if send notification fails from API", function() {
 
-            var error = 500, notification = { foo: "bar"};
+            var error = { data: 500 }, notification = { foo: "bar"};
             httpMock.when("POST", "api/notifications").respond(error);
 
             model.sendNotification(notification).catch(function (err) {
 
-                expect(err.status).toEqual(error);
+                expect(err.status).toEqual(error.data);
             });
 
             httpMock.flush();
@@ -65,12 +65,12 @@
 
         it("should handle error properly if load notifications fails from API", function() {
 
-            var error = 500;
+            var error = { data: 500 };
             httpMock.when("GET", "api/notifications").respond(error);
 
             model.getNotifications().catch(function (err) {
 
-                expect(err.status).toEqual(error);
+                expect(err.status).toEqual(error.data);
             });
 
             httpMock.flush();

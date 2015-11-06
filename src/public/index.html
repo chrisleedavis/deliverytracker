@@ -11,8 +11,9 @@
     <!-- endbuild -->
 </head>
 <body>
-<div data-ng-app="dtApp">
-    <div data-ng-cloak data-ng-controller="NavCtrl">
+<div data-ng-app="dtApp" data-ng-cloak>
+    <div id="loading" class="loading-spinner"></div>
+    <div data-ng-controller="NavCtrl">
         <ul class="navigation">
             <li data-ng-click="redirect('/')" class="header">
                 <span>Delivery Tracker</span>
@@ -28,6 +29,7 @@
             </li>
         </ul>
     </div>
+    <dt-alerts></dt-alerts>
     <div data-ng-view></div>
 </div>
 <!-- build:lib -->

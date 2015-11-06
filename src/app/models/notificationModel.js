@@ -17,11 +17,6 @@
 
                         self.notification = data.d;
                         defer.resolve(self.notification);
-                    },
-                    function(errorResponse) {
-
-                        defer.reject(errorResponse);
-
                     });
 
                 return defer.promise;
@@ -36,11 +31,6 @@
 
                         self.notifications = notifications.d;
                         defer.resolve(self.notifications);
-                    },
-                    function(errorResponse) {
-
-                        defer.reject(errorResponse);
-
                     });
 
                 return defer.promise;

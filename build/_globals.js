@@ -19,8 +19,10 @@ module.exports = {
             "./node_modules/angular-material/angular-material.js",
             "./node_modules/angular-messages/angular-messages.js",
             "./node_modules/angular-resource/angular-resource.js",
+            "./node_modules/angular-sanitize/angular-sanitize.js",
             "./node_modules/ng-file-upload/dist/ng-file-upload-all.js",
-            "./node_modules/lodash/index.js"
+            "./node_modules/lodash/index.js",
+            "./node_modules/spin/dist/spin.js"
         ];
     },
     getLibCssSources: () => {

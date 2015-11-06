@@ -20,6 +20,7 @@
     "angular-messages": "^1.4.7",
     "angular-resource": "^1.4.7",
     "angular-route": "~1.4.7",
+    "angular-sanitize": "^1.4.7",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "lodash": "~3.10.1",
@@ -31,7 +32,8 @@
     "nodemailer-mailgun-transport": "git+https://github.com/orliesaurus/nodemailer-mailgun-transport.git",
     "passport": "^0.3.0",
     "passport-http": "^0.3.0",
-    "simple-node-logger": "^0.92.21"
+    "simple-node-logger": "^0.92.21",
+    "spin": "0.0.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.7",
