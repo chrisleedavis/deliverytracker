@@ -42,6 +42,19 @@ class BaseController {
 
         responseHelper.sendResponse(response, data);
     }
+
+    findAll(request, response, model) {
+
+        var self = this;
+
+        model.find({}).exec()
+            .then((users) => {
+                self.handleResponse(response, users);
+            })
+            .catch((err) => {
+                self.handleError(response, err);
+            });
+    }
 }
 
 module.exports = BaseController;

@@ -33,13 +33,7 @@ class UsersController extends BaseController {
 
     findAllUsers(request, response) {
 
-        User.find({}).exec()
-            .then((users) => {
-                super.handleResponse(response, users);
-            })
-            .catch((err) => {
-                super.handleError(response, err);
-            });
+        super.findAll(request, response, User);
     }
 }
 

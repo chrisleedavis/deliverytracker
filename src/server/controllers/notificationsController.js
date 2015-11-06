@@ -41,13 +41,7 @@ class NotificationsController extends BaseController {
 
     findAllNotifications(request, response) {
 
-        Notification.find({}).exec()
-            .then((notifications) => {
-                super.handleResponse(response, notifications);
-            })
-            .catch((err) => {
-                super.handleError(response, err);
-            });
+        super.findAll(request, response, Notification);
     }
 }
 

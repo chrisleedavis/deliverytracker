@@ -25,13 +25,7 @@ class EmployeesController extends BaseController {
 
     findAllEmployees(request, response) {
 
-        Employee.find({}).exec()
-            .then((employees) => {
-                super.handleResponse(response, employees);
-            })
-            .catch((err) => {
-                super.handleError(response, err);
-            });
+        super.findAll(request, response, Employee);
     }
 }
 
