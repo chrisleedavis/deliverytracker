@@ -66,8 +66,8 @@
 
             showAlertAndAssertAlertExists();
 
-            //CLEAR ALERT 
-            browserTrigger(buttonCloseEl, "click");
+            //CLEAR ALERT
+            buttonCloseEl.triggerHandler("click");
             assertAlertWasRemoved();
         });
 

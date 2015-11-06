@@ -5,7 +5,6 @@ var globals = require("./build/_globals.js"),
     appFiles = globals.getAppSources();
 
 libFiles.push("./node_modules/angular-mocks/angular-mocks.js");
-libFiles.push("./browserTrigger.js");
 appFiles = _.without(appFiles, "!./src/app/**/*.spec.js");
 files = _.union(libFiles, appFiles);
 
