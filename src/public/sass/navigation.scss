@@ -1,0 +1,46 @@
+@import "variables";
+
+.navigation {
+  list-style: none;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 12px 24px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: 500;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  background-color: $primary-color;
+}
+.navigation li {
+  display: inline;
+  padding: 15px;
+  color: $grey;
+  text-decoration: none;
+  transition: background-color 0.35s cubic-bezier(0.35, 0, 0.25, 1);
+  position: relative;
+  top: -12px;
+}
+.navigation li.header {
+  color: $light-grey;
+}
+.navigation li:focus {
+  outline: 0;
+}
+.navigation li.active {
+  color: $white;
+  font-weight: bold;
+  border-bottom: $secondary-color 2px solid;
+  padding-bottom: 10px;
+}
+.navigation-icon {
+  height: 50px;
+  width: 50px;
+  vertical-align: bottom;
+}
+.navigation-icon:focus {
+  outline: 0;
+}

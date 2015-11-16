@@ -52,7 +52,7 @@ var gulp = require("gulp"),
                     tpl: '<link href="%s" rel="stylesheet">'
                 },
                 appcss: {
-                    src: ["app.css"],
+                    src: ["app.min.css"],
                     tpl: '<link href="%s" rel="stylesheet">'
                 }
             },

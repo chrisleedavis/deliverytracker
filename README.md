@@ -40,3 +40,10 @@ module.exports = {
 };
 ```
 
+#### theme support
+- add your custom them within the theme dir, THEN
+
+```
+npm start --theme=[YOUR THEME HERE]
+```
+

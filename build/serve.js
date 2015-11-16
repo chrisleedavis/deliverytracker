@@ -17,13 +17,13 @@ var gulp = require("gulp"),
         server.start();
 
         //restart server when changes are detected
-        gulp.watch(["./dist/**/*.{html,css,png,js}", "./src/app/**/*.js"], (file) => {
+        gulp.watch(["./dist/**/*.{html,css,png,js,ico}", "./src/app/**/*.js"], (file) => {
             server.notify.apply(server, [file]);
         });
         gulp.watch(serverPath, server.start.bind(server));
 
         //add watches for application
-        gulp.watch("./src/public/**/*.{html,css,png}", ["replace"]);
+        gulp.watch("./src/public/**/*.{html,css,scss,png,ico}", ["bundle-app-css","replace"]);
         gulp.watch(["./src/**/*.html", "!./src/public/**/*.html"], ["ngTemplates"]);
     };
 

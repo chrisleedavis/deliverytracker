@@ -3,6 +3,7 @@ var argv = require("yargs").argv;
 
 module.exports = {
     isProduction: argv.prod || argv.production || argv.p,
+    theme: argv.theme || argv.t || "default",
     getAppSources: () => {
         return [
             "./src/app/app.js",

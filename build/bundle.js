@@ -2,6 +2,7 @@ var gulp = require("gulp"),
     globals = require("./_globals.js"),
     concat = require("gulp-concat"),
     uglify = require("gulp-uglify"),
+    sass = require('gulp-sass'),
     cssmin = require("gulp-cssmin"),
     sourceMaps = require("gulp-sourcemaps"),
     bundleFn = (sources, resultFile, fn) => {
@@ -13,7 +14,7 @@ var gulp = require("gulp"),
             .pipe(gulp.dest("./dist"));
     };
 
-gulp.task("bundle-app", () =>{
+gulp.task("bundle-app", () => {
     if (globals.isProduction) {
         return bundleFn(
             globals.getAppSources(),
@@ -32,12 +33,14 @@ gulp.task("bundle-lib", () => {
 });
 
 gulp.task("bundle-app-css", () => {
-    if (globals.isProduction) {
-        return bundleFn(
-            ["./dist/app.css"],
-            "app.min.css",
-            cssmin);
-    }
+
+    var themeDir = "./theme/" + globals.theme;
+
+    gulp.src([themeDir, "./src/public/sass/**/*.scss"])
+        .pipe(sass({includePaths: themeDir}))
+        .pipe(concat("app.min.css"))
+        .pipe(cssmin())
+        .pipe(gulp.dest("./dist"));
 });
 
 gulp.task("bundle-lib-css", () => {

@@ -1,0 +1,10 @@
+@import "variables";
+
+.notification button {
+  background-color: $secondary-color !important;
+  max-width: 150px;
+  position: absolute;
+}
+.notification .select {
+  max-width: 350px;
+}

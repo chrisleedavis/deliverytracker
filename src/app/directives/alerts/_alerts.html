@@ -1,8 +1,7 @@
-<div class="alert alert-dismissible alert-fixed" role="alert" data-ng-class="alert.style">
-    <div data-ng-if="!!alert">
-        <button type="button" class="close" data-ng-click="clearAlert()">
+<div class="alert" role="alert" data-ng-class="alert.style">
+    <div data-ng-if="!!alert" class="alert-message">
+        <button type="button" class="alert-close" data-ng-click="clearAlert()">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
         </button>
         <strong class="mrs">{{alert.label}}!</strong>
         <span data-ng-bind-html="alert.message"></span>

@@ -1,0 +1,41 @@
+@import "variables";
+
+.alert {
+  position: fixed;
+  top: 5%;
+  width: 50%;
+  left: 23%;
+  z-index: 2000;
+  height: 50px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-message {
+  padding: 15px;
+}
+.alert-close {
+  position: relative;
+  top: -2px;
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  filter: alpha(opacity=20);
+}
+.alert-danger {
+  background-color: $danger;
+}
+.alert-info {
+  background-color: $info;
+}
+.alert-warning {
+  background-color: $warning;
+}
+.alert-success {
+  background-color: $success;
+}

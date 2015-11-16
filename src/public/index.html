@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delivery Tracker</title>
+    <title>Deliver IT</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- build:libcss -->
     <!-- endbuild -->
     <!-- build:appcss -->
@@ -15,17 +16,18 @@
     <div id="loading" class="loading-spinner"></div>
     <div data-ng-controller="NavCtrl">
         <ul class="navigation">
+            <img src="logo.png" alt="Deliver IT" class="navigation-icon" data-ng-click="redirect('/')" />
             <li data-ng-click="redirect('/')" class="header">
-                <span>Delivery Tracker</span>
+                <span>Deliver IT</span>
             </li>
-            <li data-ng-click="redirect('/')" data-ng-class="{active: isActive(undefined)}">
+            <li data-ng-click="redirect('/')" data-ng-class="{active: isActive(undefined)}" data-ng-if="authenticated">
                 <span>Home</span>
             </li>
-            <li data-ng-click="redirect('/clients/clients')" data-ng-class="{active: isActive('clients')}">
-                <span>Clients</span>
-            </li>
-            <li data-ng-click="redirect('/notifications/notifications')" data-ng-class="{active: isActive('notifications')}">
+            <li data-ng-click="redirect('/notifications/notifications')" data-ng-class="{active: isActive('notifications')}" data-ng-if="authenticated">
                 <span>Notifications</span>
+            </li>
+            <li data-ng-click="signOut()" data-ng-if="authenticated">
+                <span>Sign Out</span>
             </li>
         </ul>
     </div>
