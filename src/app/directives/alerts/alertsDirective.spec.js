@@ -14,7 +14,7 @@
         findElementsInHtml = function () {
 
             strongEl = angular.element(element.find("strong"));
-            spanEl = angular.element(element.find("span")["2"]);
+            spanEl = angular.element(element.find("span")["1"]);
             buttonCloseEl = angular.element(element.find("button"));
         },
         showAlertAndAssertAlertExists = function () {
