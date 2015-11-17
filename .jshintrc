@@ -15,6 +15,7 @@
     "jasmine": true,
     "FileReader": true,
     "afterEach": true,
-    "Spinner": true
+    "Spinner": true,
+    "XMLHttpRequest": true
   }
 }

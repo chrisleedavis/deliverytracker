@@ -6,12 +6,16 @@ const _ = require("lodash"),
     VALIDATION_ERROR = "ValidationError",
     ERROR_RESPONSE = { error: "An error occurred.  Please contact the system administrator." };
 
+let self;
+
 class BaseController {
 
     constructor() {
         if (this.constructor === BaseController) {
             throw new TypeError("BaseController is an abstract class and cannot be instantiated directly");
         }
+
+        self = this;
     }
 
     handleError(response, err) {
@@ -45,11 +49,9 @@ class BaseController {
 
     findAll(request, response, model) {
 
-        var self = this;
-
         model.find({}).exec()
-            .then((users) => {
-                self.handleResponse(response, users);
+            .then((data) => {
+                self.handleResponse(response, data);
             })
             .catch((err) => {
                 self.handleError(response, err);

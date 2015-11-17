@@ -11,7 +11,10 @@ const bodyParser = require("body-parser"),
     NOTIFICATION_API_ROOT = "/api/notifications",
     UsersController = require("./controllers/usersController"),
     users = new UsersController(),
-    USER_API_ROOT = "/api/users";
+    USER_API_ROOT = "/api/users",
+    LogsController = require("./controllers/logsController"),
+    logs = new LogsController(),
+    LOG_API_ROOT = "/api/logs";
 
 class Router {
 
@@ -37,6 +40,9 @@ class Router {
         server.route(USER_API_ROOT)
             .post(authentication.authenticate, users.addUser)
             .get(authentication.authenticate, users.findAllUsers);
+
+        server.route(LOG_API_ROOT)
+            .post(authentication.authenticate, logs.addLog);
     }
 }
 

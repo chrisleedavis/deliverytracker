@@ -22,8 +22,7 @@
 
             return resourceService;
         }])
-        .factory("dtHttpInterceptor",
-        ["$q", "dtWaitCursorService", "dtAlertService",
+        .factory("dtHttpInterceptor", ["$q", "dtWaitCursorService", "dtAlertService",
             function($q, waitCursorService, alertService) {
 
                 var reportFailureAndStopWaitCursor = function(type) {

@@ -39,6 +39,10 @@ describe("Router Tests", () => {
                 addUser(request, response) {}
                 findAllUsers(request, response) {}
             });
+        mockery.registerMock("./controllers/logsController",
+            class {
+                addLog(request, response) {}
+            });
 
         //mock out body-parser for verifying calls only
         mockery.registerMock("body-parser", {
@@ -72,7 +76,7 @@ describe("Router Tests", () => {
             },
             router = new Router(express, server);
 
-        expect(configQueue.length).toEqual(24);
+        expect(configQueue.length).toEqual(27);
         expect(configQueue[0]).toEqual("passport initialized");
         expect(configQueue[1]).toEqual("./dist");
         expect(configQueue[2]).toEqual("/");
@@ -97,6 +101,9 @@ describe("Router Tests", () => {
         expect(configQueue[21]).toEqual("post: addUser(request, response) {}");
         expect(configQueue[22]).toEqual("auth: () => {}");
         expect(configQueue[23]).toEqual("get: findAllUsers(request, response) {}");
+        expect(configQueue[24]).toEqual("route: /api/logs");
+        expect(configQueue[25]).toEqual("auth: () => {}");
+        expect(configQueue[26]).toEqual("post: addLog(request, response) {}");
     });
 
 });

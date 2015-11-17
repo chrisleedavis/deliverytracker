@@ -2,28 +2,11 @@
 
 const passport = require("passport"),
     BasicStrategy = require("passport-http").BasicStrategy,
-    User = require("../models/userModel"),
-    encryption = require("../models/encryptionModel");
+    User = require("../models/userModel");
 
 passport.use(new BasicStrategy(
     (username, password, callback) => {
-        User.findOne({ username: username })
-            .then((user) => {
-                if (!user) {
-                    return callback(null, false);
-                }
-
-                encryption.compareHash(password, user.password)
-                    .then((isMatch) => {
-                        return callback(null, isMatch ? user : false);
-                    })
-                    .catch((err) => {
-                        return callback(err);
-                    });
-            })
-            .catch((err) => {
-                return callback(err);
-            });
+        return User.login(username, password, callback);
     }
 ));
 
