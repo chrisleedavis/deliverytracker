@@ -2,22 +2,24 @@
 
 const mailer = require("nodemailer"),
     mailGun = require("nodemailer-mailgun-transport"),
-    secureTransporter = require("../config/config").secureTransporter;
+    secureTransporter = require("../config/config").secureTransporter,
+    globals = require("../../../build/_globals.js"),
+    mailOptions = require("../../../theme/" + globals.theme + "/mailOptions");
 
 class Mailer {
 
     sendNotification(notification, employee) {
 
         const transporter = mailer.createTransport(mailGun(secureTransporter.auth)),
-            mailOptions = {
+            options = {
                 from: secureTransporter.sender,
                 to: notification.email,
-                subject: "Delivery Notice",
-                text: "You have a delivery today.",
-                html: '<b>You have a delivery today.</b><img src="' + employee.image + '" alt="Delivery Person" width="150" height="150" />'
+                subject: mailOptions.subject,
+                text: "",
+                html: mailOptions.getHtml(employee)
             };
 
-        transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(options, (error, info) => {
 
             if(error){
                 notification.messages.errors.push(error);

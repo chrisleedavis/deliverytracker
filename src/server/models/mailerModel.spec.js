@@ -59,7 +59,7 @@ describe("Mailer Model Tests", () => {
             from: "fake@sender.com",
             to: "tom.smith@domain.com",
             subject: "Delivery Notice",
-            text: "You have a delivery today.",
+            text: "",
             html: '<b>You have a delivery today.</b><img src="MOCK_IMAGE_NOW" alt="Delivery Person" width="150" height="150" />' });
         expect(notification.messages.information.length).toEqual(1);
         expect(notification.messages.information[0]).toEqual(info.response);
