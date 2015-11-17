@@ -14,7 +14,10 @@ const bodyParser = require("body-parser"),
     USER_API_ROOT = "/api/users",
     LogsController = require("./controllers/logsController"),
     logs = new LogsController(),
-    LOG_API_ROOT = "/api/logs";
+    LOG_API_ROOT = "/api/logs",
+    LoginController = require("./controllers/loginController"),
+    login = new LoginController(),
+    LOGIN_API_ROOT = "/api/login";
 
 class Router {
 
@@ -43,6 +46,9 @@ class Router {
 
         server.route(LOG_API_ROOT)
             .post(authentication.authenticate, logs.addLog);
+
+        server.route(LOGIN_API_ROOT)
+            .post(login.login);
     }
 }
 

@@ -7,8 +7,7 @@ describe("User Model Tests", () => {
 
     let User,
         user,
-        username,
-        password,
+        credentials,
         hashError,
         findOneError,
         authQueue,
@@ -18,8 +17,7 @@ describe("User Model Tests", () => {
         user = undefined;
         authQueue = [];
         callback = function() { authQueue.push(arguments); };
-        password = undefined;
-        username = undefined;
+        credentials = {};
         hashError = undefined;
         findOneError = undefined;
 
@@ -94,49 +92,49 @@ describe("User Model Tests", () => {
 
     it("should authenticate properly when hashes match", () => {
 
-        username = "fooBar@test.com";
-        password = "itWorks";
+        credentials.username = "fooBar@test.com";
+        credentials.password = "itWorks";
         user = { password: "itWorks" };
-        User.login(username, password, callback);
+        User.login(credentials, callback);
 
         expect(authQueue.length).toEqual(1);
         expect(authQueue[0]["1"]).toEqual(user); //proves they're authenticated if user returned
     });
 
     it("should authenticate properly when passwords don't match", () => {
-        username = "fooBar@test.com";
-        password = "itWorks";
+        credentials.username = "fooBar@test.com";
+        credentials.password = "itWorks";
         user = { password: "doesntWork" };
-        User.login(username, password, callback);
+        User.login(credentials, callback);
 
         expect(authQueue.length).toEqual(1);
         expect(authQueue[0]["1"]).not.toBeTruthy();
     });
 
     it("should authenticate properly when user is not defined", () => {
-        User.login(username, password, callback);
+        User.login(credentials, callback);
 
         expect(authQueue.length).toEqual(1);
         expect(authQueue[0]["1"]).not.toBeTruthy();
     });
 
     it("should return error if hash comparison throws error", () => {
-        username = "fooBar@test.com";
-        password = "itWorks";
+        credentials.username = "fooBar@test.com";
+        credentials.password = "itWorks";
         user = { password: "itWorks" };
         hashError = "fooBar";
-        User.login(username, password, callback);
+        User.login(credentials, callback);
 
         expect(authQueue.length).toEqual(1);
         expect(authQueue[0]["0"]).toEqual(hashError);
     });
 
     it("should return error if findOne throws error", () => {
-        username = "fooBar@test.com";
-        password = "itWorks";
+        credentials.username = "fooBar@test.com";
+        credentials.password = "itWorks";
         user = { password: "itWorks" };
         findOneError = "fooBar";
-        User.login(username, password, callback);
+        User.login(credentials, callback);
 
         expect(authQueue.length).toEqual(1);
         expect(authQueue[0]["0"]).toEqual(findOneError);

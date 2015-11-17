@@ -17,14 +17,14 @@ const mongoose = require("mongoose"),
         });
 
 //using function instead of () => to retain execution context
-userSchema.statics.login = function(username, password, callback) {
-    this.findOne({ username: username })
+userSchema.statics.login = function(credentials, callback) {
+    this.findOne({ username: credentials.username })
         .then((user) => {
             if (!user) {
                 return callback(null, false);
             }
 
-            encryption.compareHash(password, user.password)
+            encryption.compareHash(credentials.password, user.password)
                 .then((isMatch) => {
                     return callback(null, isMatch ? user : false);
                 })

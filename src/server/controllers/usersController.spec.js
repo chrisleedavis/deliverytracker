@@ -1,6 +1,6 @@
 "use strict";
 
-describe("Employees Controller Tests", () => {
+describe("Users Controller Tests", () => {
 
     let _ = require("lodash"),
         mockery = require("mockery"),

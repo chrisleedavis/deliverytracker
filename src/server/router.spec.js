@@ -43,6 +43,10 @@ describe("Router Tests", () => {
             class {
                 addLog(request, response) {}
             });
+        mockery.registerMock("./controllers/loginController",
+            class {
+                login(request, response) {}
+            });
 
         //mock out body-parser for verifying calls only
         mockery.registerMock("body-parser", {
@@ -67,7 +71,17 @@ describe("Router Tests", () => {
                     configQueue.push("route: " + config);
 
                     let Pipe = class {
-                        post (auth, config) { configQueue.push("auth: " + auth); configQueue.push("post: " + config); return this; }
+                        post () {
+                            const args = arguments;
+
+                            if (args.length === 2) {
+                                configQueue.push("auth: " + args[0]);
+                                configQueue.push("post: " + args[1]);
+                            } else {
+                                configQueue.push("post: " + args[0]);
+                            }
+                            return this;
+                        }
                         get (auth, config) { configQueue.push("auth: " + auth); configQueue.push("get: " + config); return this; }
                     };
 
@@ -76,7 +90,7 @@ describe("Router Tests", () => {
             },
             router = new Router(express, server);
 
-        expect(configQueue.length).toEqual(27);
+        expect(configQueue.length).toEqual(29);
         expect(configQueue[0]).toEqual("passport initialized");
         expect(configQueue[1]).toEqual("./dist");
         expect(configQueue[2]).toEqual("/");
@@ -104,6 +118,8 @@ describe("Router Tests", () => {
         expect(configQueue[24]).toEqual("route: /api/logs");
         expect(configQueue[25]).toEqual("auth: () => {}");
         expect(configQueue[26]).toEqual("post: addLog(request, response) {}");
+        expect(configQueue[27]).toEqual("route: /api/login");
+        expect(configQueue[28]).toEqual("post: login(request, response) {}");
     });
 
 });
