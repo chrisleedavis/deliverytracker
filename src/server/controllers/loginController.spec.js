@@ -40,6 +40,8 @@ describe("Login Controller Tests", () => {
                 };
             }
         });
+
+        mockery.registerMock("../config/config", { secret: "BlahTest" });
     });
 
     afterEach(() => {
