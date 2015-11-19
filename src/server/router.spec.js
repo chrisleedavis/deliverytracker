@@ -39,7 +39,7 @@ describe("Router Tests", () => {
                 login(request, response) {}
             });
 
-        mockery.registerMock("../config/config", { secret: "BlahTest" });
+        mockery.registerMock("./config/config", { secret: "BlahTest" });
 
         //mock out body-parser for verifying calls only
         mockery.registerMock("body-parser", {
