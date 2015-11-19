@@ -35,7 +35,8 @@ module.exports = {
     },
 
     databaseUrl: "YOUR DB URL HERE",
-    databaseStartCommand: "YOUR START COMMAND HERE"
+    databaseStartCommand: "YOUR START COMMAND HERE",
+    secret: "YOUR JWT SECRET HERE"
 
 };
 ```
