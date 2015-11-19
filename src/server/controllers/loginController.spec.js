@@ -48,10 +48,9 @@ describe("Login Controller Tests", () => {
     });
 
     it("should handle login properly when login successful", () => {
-        let LoginController = require("./loginController"),
-            login = new LoginController(),
+        let login = new (require("./loginController"))(),
             request = { body: { username: "fooBar", password: "testMe" } },
-            response = { send: function(data) { loginQueue.push(data); } };
+            response = { send: (data) => { loginQueue.push(data); } };
 
         login.login(request, response);
 
@@ -60,15 +59,15 @@ describe("Login Controller Tests", () => {
     });
 
     it("should handle login properly when login failed", () => {
-        let LoginController = require("./loginController"),
-            login = new LoginController(),
+        let login = new (require("./loginController"))(),
             request = { body: { password: "testMe" } },
-            response = { send: function(data) { loginQueue.push(data); } };
+            response = { send: (code, data) => { loginQueue.push(code); loginQueue.push(data); } };
 
         login.login(request, response);
 
-        expect(loginQueue.length).toEqual(1);
-        expect(loginQueue[0].d).toEqual({ error: "An error occurred.  Please contact the system administrator." });
+        expect(loginQueue.length).toEqual(2);
+        expect(loginQueue[0]).toEqual(401);
+        expect(loginQueue[1].d).toEqual("Not Authorized");
     });
 
 });
