@@ -1,14 +1,10 @@
 (function(angular) {
     "use strict";
 
-    var pendingRequests = [],
-        authorizationToken;
+    var pendingRequests = [];
 
     angular.module("dtServices")
         .config(["$httpProvider", function($httpProvider) {
-            //temporary for MVP
-            $httpProvider.defaults.headers.common.Authorization = "Basic " + authorizationToken;
-            $httpProvider.defaults.withCredentials = true;
             $httpProvider.interceptors.push("dtHttpInterceptor");
         }])
         .factory("dtResourceService", ["$resource", function($resource) {
@@ -22,8 +18,8 @@
 
             return resourceService;
         }])
-        .factory("dtHttpInterceptor", ["$q", "dtWaitCursorService", "dtAlertService",
-            function($q, waitCursorService, alertService) {
+        .factory("dtHttpInterceptor", ["$q", "dtWaitCursorService", "dtAlertService", "$window",
+            function($q, waitCursorService, alertService, $window) {
 
                 var reportFailureAndStopWaitCursor = function(type) {
 
@@ -42,7 +38,7 @@
                     request: function(config) {
 
                         if (config) {
-                            config.headers.Authorization = authorizationToken;
+                            config.headers.Authorization = "Bearer " + $window.sessionStorage.token;
                         }
 
                         if (!waitCursorService.isSpinning()) {
@@ -59,10 +55,6 @@
                     response: function (response) {
 
                         var hasPendingRequests = pendingRequests.length > 0;
-
-                        if (response) {
-                            authorizationToken = response.headers("Authorization") || authorizationToken;
-                        }
 
                         if (!hasPendingRequests) {
                             waitCursorService.hideSpinner();
