@@ -44,12 +44,12 @@ describe("Global Error Handler Tests", () => {
         Date = originalDate;
     });
 
-    it("should instantiate Global Error Handler properly", () => {
+    it("should catch all errors properly", () => {
 
-        let server = {
+        let err = { stack: "fooBar" },
+            server = {
                 use: (fn) => {
-                    let err = { stack: "fooBar" },
-                        req = {},
+                    let req = {},
                         res = { status: (s) => { console.error(s); }, send: (m) => { console.error(m); } },
                         next = (e) => { console.error(e); };
 
@@ -59,15 +59,68 @@ describe("Global Error Handler Tests", () => {
             GlobalErrorHandler = require("./globalErrorHandler");
 
         Date = class { toJSON() { console.error("fooBarDate"); return "fakeDateHere"; } };
-        new GlobalErrorHandler(server);
+        let handler = new GlobalErrorHandler({ server: server, useManualRegistration: true});
+        handler.registerGlobalErrorHandler();
 
         expect(consoleLog.length).toEqual(7);
         expect(consoleLog[0]).toEqual("fooBarDate");
         expect(consoleLog[1]).toEqual("fakeDateHere");
         expect(consoleLog[2]).toEqual("fooBar");
         expect(consoleLog[3]).toEqual("fooBar");
-        expect(consoleLog[4]).toEqual({ stack: "fooBar" });
-        expect(consoleLog[5]).toEqual(500);
-        expect(consoleLog[6]).toEqual({ error: "An error occurred.  Please contact the system administrator." });
+        expect(consoleLog[4]).toEqual(500);
+        expect(consoleLog[5]).toEqual({ error: "An error occurred.  Please contact the system administrator." });
+        expect(consoleLog[6]).toEqual({ stack: "fooBar" });
+
+        //test 401 errors
+        consoleLog = [];
+        err.name = "UnauthorizedError";
+        handler = new GlobalErrorHandler({ server: server, useManualRegistration: true});
+        handler.registerGlobalErrorHandler();
+
+        expect(consoleLog.length).toEqual(7);
+        expect(consoleLog[0]).toEqual("fooBarDate");
+        expect(consoleLog[1]).toEqual("fakeDateHere");
+        expect(consoleLog[2]).toEqual("fooBar");
+        expect(consoleLog[3]).toEqual("fooBar");
+        expect(consoleLog[4]).toEqual(401);
+        expect(consoleLog[5]).toEqual({ error: "An error occurred.  Please contact the system administrator." });
+        expect(consoleLog[6]).toEqual({ stack: "fooBar", name: "UnauthorizedError" });
+    });
+
+    it("should handle not found routes properly", () => {
+
+        let server = {
+                use: (fn) => {
+                    let req = {},
+                        res = { status: (s) => { console.error(s); }, redirect: (s, m) => { console.error(s); console.error(m); } };
+
+                    fn(req, res);
+                }
+            },
+            GlobalErrorHandler = require("./globalErrorHandler");
+
+        Date = class { toJSON() { console.error("fooBarDate"); return "fakeDateHere"; } };
+        let handler = new GlobalErrorHandler({ server: server, useManualRegistration: true});
+        handler.registerNotFoundHandler();
+
+        expect(consoleLog.length).toEqual(3);
+        expect(consoleLog[0]).toEqual(404);
+        expect(consoleLog[1]).toEqual(302);
+        expect(consoleLog[2]).toEqual("/di/error");
+    });
+
+    it("should register handlers properly through constructor when useManualRegistration is false", () => {
+
+        let handlers = [],
+            server = {
+                use: (fn) => {
+                    handlers.push(fn);
+                }
+            },
+            GlobalErrorHandler = require("./globalErrorHandler");
+
+        new GlobalErrorHandler({ server: server });
+
+        expect(handlers.length).toEqual(2);
     });
 });

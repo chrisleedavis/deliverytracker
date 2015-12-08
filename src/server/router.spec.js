@@ -3,7 +3,8 @@
 describe("Router Tests", () => {
 
     let mockery = require("mockery"),
-        configQueue;
+        configQueue,
+        jwtConfig;
 
     beforeEach(() => {
 
@@ -37,6 +38,10 @@ describe("Router Tests", () => {
         mockery.registerMock("./controllers/loginController",
             class {
                 login(request, response) {}
+            });
+        mockery.registerMock("express-jwt",
+            (config) => {
+               jwtConfig = config;
             });
 
         mockery.registerMock("./config/config", { secret: "BlahTest" });
@@ -77,31 +82,58 @@ describe("Router Tests", () => {
             },
             router = new Router(express, server);
 
-        expect(configQueue.length).toEqual(24);
+        expect(configQueue.length).toEqual(26);
         expect(configQueue[0]).toEqual("./dist");
         expect(configQueue[1]).toEqual("/");
         expect(configQueue[2]).toEqual("./src");
         expect(configQueue[3]).toEqual("/src");
         expect(configQueue[4]).toEqual("./node_modules");
         expect(configQueue[5]).toEqual("/node_modules");
-        expect(configQueue[6]).toEqual({  });
-        expect(configQueue[7]).toEqual("json being used");
-        expect(configQueue[8]).toEqual({ extended: false });
-        expect(configQueue[9]).toEqual("urlencoded being used");
-        expect(configQueue[10]).toEqual("/api");
-        expect(configQueue[11]).toEqual("route: /api/employees");
-        expect(configQueue[12]).toEqual("post: addEmployee(request, response) {}");
-        expect(configQueue[13]).toEqual("get: findAllEmployees(request, response) {}");
-        expect(configQueue[14]).toEqual("route: /api/notifications");
-        expect(configQueue[15]).toEqual("post: sendNotification(request, response) {}");
-        expect(configQueue[16]).toEqual("get: findAllNotifications(request, response) {}");
-        expect(configQueue[17]).toEqual("route: /api/users");
-        expect(configQueue[18]).toEqual("post: addUser(request, response) {}");
-        expect(configQueue[19]).toEqual("get: findAllUsers(request, response) {}");
-        expect(configQueue[20]).toEqual("route: /api/logs");
-        expect(configQueue[21]).toEqual("post: addLog(request, response) {}");
-        expect(configQueue[22]).toEqual("route: /login");
-        expect(configQueue[23]).toEqual("post: login(request, response) {}");
+        expect(configQueue[6]).toEqual("/api");
+        expect(configQueue[7]).toEqual("./dist/index.html");
+        expect(configQueue[8]).toEqual("/di/*");
+        expect(configQueue[9]).toEqual({  });
+        expect(configQueue[10]).toEqual("json being used");
+        expect(configQueue[11]).toEqual({ extended: false });
+        expect(configQueue[12]).toEqual("urlencoded being used");
+        expect(configQueue[13]).toEqual("route: /api/employees");
+        expect(configQueue[14]).toEqual("post: addEmployee(request, response) {}");
+        expect(configQueue[15]).toEqual("get: findAllEmployees(request, response) {}");
+        expect(configQueue[16]).toEqual("route: /api/notifications");
+        expect(configQueue[17]).toEqual("post: sendNotification(request, response) {}");
+        expect(configQueue[18]).toEqual("get: findAllNotifications(request, response) {}");
+        expect(configQueue[19]).toEqual("route: /api/users");
+        expect(configQueue[20]).toEqual("post: addUser(request, response) {}");
+        expect(configQueue[21]).toEqual("get: findAllUsers(request, response) {}");
+        expect(configQueue[22]).toEqual("route: /api/logs");
+        expect(configQueue[23]).toEqual("post: addLog(request, response) {}");
+        expect(configQueue[24]).toEqual("route: /login");
+        expect(configQueue[25]).toEqual("post: login(request, response) {}");
     });
 
+    it("should handle jwt security properly if no auth token is provided", () => {
+        const request = { headers: {} },
+            token = jwtConfig.getToken(request);
+
+        expect(token).toBeNull();
+    });
+
+    it("should handle jwt security properly if auth token is provided", () => {
+        const crypto = require("crypto"),
+            algorithm = "aes-256-ctr",
+            clearToken = "woo hoo mate!",
+            config = require("./config/config"),
+            cipher = crypto.createCipher(algorithm, config.secret);
+
+        let encryptedToken = cipher.update(clearToken, "utf8", "hex"),
+            request = { headers: {} },
+            token;
+
+        encryptedToken += cipher.final("hex");
+        request.headers.authorization = "Bearer " + encryptedToken;
+        token = jwtConfig.getToken(request);
+
+        expect(token).not.toBeNull();
+        expect(token).toEqual(clearToken);
+    });
 });

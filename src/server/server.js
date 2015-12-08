@@ -9,7 +9,7 @@ const express = require("express"),
     server = express();
 
 new Router(express, server);
-new GlobalErrorHandler(server);
+new GlobalErrorHandler({ server: server });
 mongoose.Promise = Promise;
 mongoose.connect(config.databaseUrl);
 
