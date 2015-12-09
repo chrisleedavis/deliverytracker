@@ -39,20 +39,6 @@
 
         });
 
-        it("should handle error properly if load employees fails from API", function() {
-
-            var error = { data: 500 };
-            httpMock.when("GET", "api/employees").respond(error);
-
-            model.getEmployees().catch(function (err) {
-
-                expect(err.status).toEqual(error.data);
-            });
-
-            httpMock.flush();
-            timeout.flush();
-        });
-
         it("should create employee appropriately from API", function () {
 
             var employee = employees[2];
@@ -84,20 +70,6 @@
             httpMock.flush();
             timeout.flush();
 
-        });
-
-        it("should handle error properly if save employee fails from API", function() {
-
-            var error = { data: 500 }, employee = employees[1];
-            httpMock.when("PUT", "api/employees/2").respond(error);
-
-            model.saveEmployee(employee).catch(function (err) {
-
-                expect(err.status).toEqual(error.data);
-            });
-
-            httpMock.flush();
-            timeout.flush();
         });
 
     });

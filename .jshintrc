@@ -16,6 +16,7 @@
     "FileReader": true,
     "afterEach": true,
     "Spinner": true,
-    "XMLHttpRequest": true
+    "XMLHttpRequest": true,
+    "window": true
   }
 }

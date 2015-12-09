@@ -3,15 +3,9 @@
 
     angular.module("dtApp")
         .controller("NotificationsCtrl",
-        ["$scope", "dtNotificationModel", function($scope, notificationModel) {
+        ["$scope", function($scope) {
 
-            var loadNotifications = function() {
-                    notificationModel.getNotifications().then(function(notifications) {
-                        $scope.notifications = notifications;
-                    });
-                };
-
-            loadNotifications();
+            $scope.message = "Coming soon...";
 
         }]);
 

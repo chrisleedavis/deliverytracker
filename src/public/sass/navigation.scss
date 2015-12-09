@@ -5,7 +5,6 @@
   font-size: 14px;
   line-height: 24px;
   padding: 12px 24px;
-  cursor: pointer;
   white-space: nowrap;
   text-transform: uppercase;
   font-weight: 500;
@@ -23,6 +22,7 @@
   transition: background-color 0.35s cubic-bezier(0.35, 0, 0.25, 1);
   position: relative;
   top: -12px;
+  cursor: pointer;
 }
 .navigation li.header {
   color: $light-grey;
@@ -35,6 +35,9 @@
   font-weight: bold;
   border-bottom: $secondary-color 2px solid;
   padding-bottom: 10px;
+}
+.navigation img {
+  cursor: pointer;
 }
 .navigation-icon {
   height: 50px;

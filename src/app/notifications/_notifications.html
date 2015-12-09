@@ -1,14 +1,5 @@
 <div data-ng-controller="NotificationsCtrl">
     <md-content class="md-padding">
-        <h2>Notifications</h2>
-        <md-list role="list">
-            <md-list-item class="md-3-line md-no-proxy" ng-repeat="notification in notifications | orderBy:'-date'">
-                <div class="md-list-item-text layout-column">
-                    <h3>{{notification.customer}}</h3>
-                    <h4>{{notification.createdAt | date:"medium"}}</h4>
-                    <p>{{notification.email}}</p>
-                </div>
-            </md-list-item>
-        </md-list>
+        <span>{{message}}</span>
     </md-content>
 </div>

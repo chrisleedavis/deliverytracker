@@ -3,15 +3,34 @@
 
     angular.module("dtApp",
         ["ngSanitize", "dtTemplates", "ngMaterial", "ngRoute", "ngMessages", "ngFileUpload", "dtServices", "dtModels", "dtDirectives"])
-        .config(["$routeProvider", "$mdThemingProvider", function($routeProvider, $mdThemingProvider) {
+        .config(["$routeProvider", "$mdThemingProvider", "$locationProvider", function($routeProvider, $mdThemingProvider, $locationProvider) {
+
+            var routeResolver = {
+                    resolveRoute: ["$q", "$route", "$window", "$location", function($q, $route, $window, $location) {
+                        var defer = $q.defer();
+
+                        if ($route.current.params.page === "login" || $window.sessionStorage.token) {
+                            defer.resolve(true);
+                        } else {
+                            defer.reject(false);
+                            $location.path("/di/login");
+                        }
+
+                        return defer.promise;
+                    }]
+                };
+
+            $locationProvider.html5Mode(true);
+
             $routeProvider
                 .when("/", {
                     templateUrl: "/templates/home/_home.html"
                 })
-                .when("/:directory/:page", {
+                .when("/di/:page", {
                     templateUrl: function($routeParams) {
-                        return "/templates/" + $routeParams.directory + "/_" + $routeParams.page + ".html";
-                    }
+                        return "/templates/" + $routeParams.page + "/_" + $routeParams.page + ".html";
+                    },
+                    resolve: routeResolver
                 })
                 .otherwise({
                     templateUrl: "/templates/_error.html"

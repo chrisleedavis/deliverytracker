@@ -1,8 +1,7 @@
 (function () {
     "use strict";
 
-    var $rootScope,
-        notifications;
+    var $rootScope;
 
     beforeEach(module("dtApp"));
 
@@ -10,28 +9,15 @@
 
         beforeEach(inject(function (_$controller_, _$rootScope_) {
 
-            var mockNotificationModel = {
-                    getNotifications: function() {
-                        return {
-                            then: function (fn) {
-                                fn(notifications);
-                            }
-                        };
-                    }
-                };
-
-            notifications = [{ id: 234, test: "foo" }, { id: 222, test: "bar" }, { id: 111, test: "me" }];
-
             $rootScope = _$rootScope_;
-            _$controller_("NotificationsCtrl", { $scope: $rootScope, dtNotificationModel: mockNotificationModel });
+            _$controller_("NotificationsCtrl", { $scope: $rootScope });
 
         }));
 
-        it("successfully get notifications from server", function() {
+        it("should create the default message correctly", function() {
 
-            expect($rootScope.notifications.length).toEqual(3);
-            expect($rootScope.notifications[1].id).toEqual(222);
-        });
+            expect($rootScope.message).toEqual("Coming soon...");
+        })
 
     });
 

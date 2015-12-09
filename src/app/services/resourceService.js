@@ -64,6 +64,10 @@
                     },
                     responseError: function (response) {
 
+                        if (response.config && response.config.url === "login") {
+                            delete $window.sessionStorage.token;
+                        }
+
                         reportFailureAndStopWaitCursor("response");
                         $q.reject(response);
                     }
