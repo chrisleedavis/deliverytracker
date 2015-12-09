@@ -17,7 +17,7 @@
         it("should create the default message correctly", function() {
 
             expect($rootScope.message).toEqual("Coming soon...");
-        })
+        });
 
     });
 
