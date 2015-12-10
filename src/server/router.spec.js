@@ -21,6 +21,11 @@ describe("Router Tests", () => {
                 addEmployee(request, response) {}
                 findAllEmployees(request, response) {}
             });
+        mockery.registerMock("./controllers/routesController",
+            class {
+                addRoute(request, response) {}
+                findAllRoutes(request, response) {}
+            });
         mockery.registerMock("./controllers/notificationsController",
             class {
                 sendNotification(request, response) {}
@@ -82,7 +87,7 @@ describe("Router Tests", () => {
             },
             router = new Router(express, server);
 
-        expect(configQueue.length).toEqual(26);
+        expect(configQueue.length).toEqual(29);
         expect(configQueue[0]).toEqual("./dist");
         expect(configQueue[1]).toEqual("/");
         expect(configQueue[2]).toEqual("./src");
@@ -107,8 +112,11 @@ describe("Router Tests", () => {
         expect(configQueue[21]).toEqual("get: findAllUsers(request, response) {}");
         expect(configQueue[22]).toEqual("route: /api/logs");
         expect(configQueue[23]).toEqual("post: addLog(request, response) {}");
-        expect(configQueue[24]).toEqual("route: /login");
-        expect(configQueue[25]).toEqual("post: login(request, response) {}");
+        expect(configQueue[24]).toEqual("route: /api/routes");
+        expect(configQueue[25]).toEqual("post: addRoute(request, response) {}");
+        expect(configQueue[26]).toEqual("get: findAllRoutes(request, response) {}");
+        expect(configQueue[27]).toEqual("route: /login");
+        expect(configQueue[28]).toEqual("post: login(request, response) {}");
     });
 
     it("should handle jwt security properly if no auth token is provided", () => {

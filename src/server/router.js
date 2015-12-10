@@ -4,6 +4,7 @@ const bodyParser = require("body-parser"),
     expressJwt = require("express-jwt"),
     config = require("./config/config"),
     employees = new (require("./controllers/employeesController"))(),
+    routes = new (require("./controllers/routesController"))(),
     notifications = new (require("./controllers/notificationsController"))(),
     users = new (require("./controllers/usersController"))(),
     logs = new (require("./controllers/logsController"))(),
@@ -56,6 +57,10 @@ class Router {
 
         server.route("/api/logs")
             .post(logs.addLog);
+
+        server.route("/api/routes")
+            .post(routes.addRoute)
+            .get(routes.findAllRoutes);
 
         server.route("/login")
             .post(login.login);
