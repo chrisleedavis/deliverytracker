@@ -10,12 +10,12 @@
 
     describe("Log Service Tests", function () {
 
-        beforeEach(inject(function (dtLogService) {
+        beforeEach(inject(function (dtLogService, $window) {
 
             service = dtLogService;
 
             openParams = { method: "", path: "", isAsync: false };
-            headerParams = { key: "", value: "" };
+            headerParams = [];
             sendParams = { obj: "" };
 
             XMLHttpRequest = function () { };
@@ -25,12 +25,13 @@
                 openParams.isAsync = isAsync;
             };
             XMLHttpRequest.prototype.setRequestHeader = function(key, value) {
-                headerParams.key = key;
-                headerParams.value = value;
+                headerParams.push({ key: key, value: value });
             };
             XMLHttpRequest.prototype.send = function(obj) {
                 sendParams.obj = obj;
             };
+
+            $window.sessionStorage.token = "foobarTest";
 
         }));
 
@@ -40,7 +41,9 @@
             service.save(log);
 
             expect(openParams).toEqual({ method: "post", path: "api/logs", isAsync: true });
-            expect(headerParams).toEqual({ key: "Content-Type", value: "application/json" });
+            expect(headerParams.length).toEqual(2);
+            expect(headerParams[0]).toEqual({ key: "Content-Type", value: "application/json" });
+            expect(headerParams[1]).toEqual({ key: "Authorization", value: "Bearer foobarTest" });
             expect(sendParams).toEqual({ obj: '"foo bar"' });
 
         });
