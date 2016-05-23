@@ -29,8 +29,7 @@ Delivery Tracker is a system designed to provide consumers with the ability to v
 module.exports = {
 
     secureTransporter: {
-        auth: "YOUR AUTH TOKEN HERE"
-        },
+        auth: "YOUR AUTH TOKEN HERE",
         sender: "YOUR SENDER HERE"
     },
 
