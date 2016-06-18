@@ -1,0 +1,27 @@
+<div data-ng-controller="LoginCtrl">
+    <!-- <md-content class="md-padding"> -->
+        <md-toolbar class="sign-in-toolbar md-primary" >
+            <div class="md-toolbar-tools header">
+                <md-icon class="material-icons">account_box</md-icon>
+                <h3>Sign into Deliver IT</h3>
+            </div>
+            <md-input-container class="flex md-block input">
+                <label>Username</label>
+                <input required="" name="username" ng-model="login.username" class="md-input" aria-required="true" aria-invalid="true">
+            </md-input-container>
+            <md-input-container class="flex md-block input">
+                <label>Password</label>
+                <input required="" type="password" name="password" ng-model="login.password" class="md-input" aria-required="true" aria-invalid="true">
+            </md-input-container>
+            <div class='login-bottom-row' layout='row'>
+                <a href="/di/signUp" class='sign-up-link'>New? Sign up here</a>
+                <md-input-container class="flex md-block input">
+                    <button class="md-raised md-primary md-button md-ink-ripple" type="button" data-ng-click="performLogin()">
+                        <span>Log in</span>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </md-input-container>
+            </div>
+        </md-toolbar>
+    <!-- </md-content> -->
+</div>

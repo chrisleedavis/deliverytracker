@@ -1,0 +1,86 @@
+@import "variables";
+
+.sign-in-toolbar {
+  /*position: fixed;*/
+  width: 70%;
+  min-width: 215px;
+  max-width: 400px;
+  top: 75px;
+}
+.sign-in-toolbar .header {
+  background-color: $secondary-color !important;
+}
+.sign-in-toolbar .input {
+  background-color: $white !important;
+}
+.sign-in-toolbar .input:not(.md-input-invalid).md-input-focused input,
+.sign-in-toolbar .input:not(.md-input-invalid).md-input-focused label {
+  color: $primary-color !important;
+  border-color: $primary-color !important;
+}
+.sign-in-toolbar .material-icons {
+  font-size: 48px;
+  height: 48px;
+  margin-left: 10px;
+  margin-right: 40px;
+}
+@media (min-width: 751px) {
+  .sign-in-toolbar h3 {
+    font-size: 30px !important;
+  }
+  .sign-in-toolbar {
+    left: 30%;
+  }
+}
+@media (min-width: 661px) and (max-width: 750px) {
+  .sign-in-toolbar h3 {
+    font-size: 25px !important;
+  }
+  .sign-in-toolbar {
+    left: 25%;
+  }
+}
+@media (min-width: 572px) and (max-width: 660px) {
+  .sign-in-toolbar h3 {
+    font-size: 20px !important;
+  }
+  .sign-in-toolbar {
+    left: 20%;
+  }
+}
+@media (min-width: 315px) and (max-width: 571px) {
+  .sign-in-toolbar h3 {
+    font-size: 15px !important;
+  }
+  .sign-in-toolbar {
+    left: 15%;
+  }
+}
+@media (max-width: 314px) {
+  .sign-in-toolbar h3 {
+    font-size: 15px !important;
+  }
+  .sign-in-toolbar {
+    left: 15%;
+  }
+}
+@media (max-height: 460px) {
+  .sign-in-toolbar {
+    top: 125px;
+  }
+}
+.sign-in-toolbar button {
+  background-color: $primary-color !important;
+  max-width: 100px;
+  position: absolute;
+  right: 0;
+}
+
+.sign-up-link {
+  padding-top: 1em;
+  text-decoration: none;
+  background-color: white;
+  color: #747474;
+  font-size: medium;
+
+}

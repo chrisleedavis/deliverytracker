@@ -1,0 +1,55 @@
+<div data-ng-controller="SignUpCtrl">
+    <md-content class="md-padding">
+        <md-toolbar class="sign-in-toolbar md-primary" >
+            <div class="md-toolbar-tools header">
+                <md-icon class="material-icons">account_box</md-icon>
+                <h3>Register</h3>
+            </div>
+            <form name='registerForm'>
+                <md-input-container class="flex md-block input">
+                    <label>First Name</label>
+                    <input required="" name="firstname" ng-model="registration.firstname" class="md-input" aria-required="true" aria-invalid="true">
+                        <!-- <div data-ng-messages='registerForm.firstname.$error'>
+                            <div data-ng-message='required'>This field is required</div>
+                        </div> -->
+                </md-input-container>
+                <md-input-container class="flex md-block input">
+                    <label>Last Name</label>
+                    <input required="" name="lastname" ng-model="registration.lastname" class="md-input" aria-required="true" aria-invalid="true">
+                </md-input-container>
+                <md-input-container class="flex md-block input">
+                    <label>Email</label>
+                    <input required="" name="email" type="email" data-ng-model="registration.email" class="md-input" aria-required="true" aria-invalid="true">
+                    <div data-ng-messages="registerForm.email.$error" role="alert">
+                        <div data-ng-message="email">
+                        Please enter a valid email address
+                        </div>
+                    </div>
+                </md-input-container>
+                <!-- <md-input-container class="flex md-block input">
+                    <label>Confirm Email</label>
+                    <input required="" name="emailConfirm" ng-model="registration.emailConfirm" class="md-input" aria-required="true" aria-invalid="true">
+                </md-input-container> -->
+                <md-input-container class="flex md-block input">
+                    <label>Password</label>
+                    <input required="" type="password" name="password" ng-model="registration.password" class="md-input" aria-required="true" aria-invalid="true">
+                </md-input-container>
+                <md-input-container class="flex md-block input">
+                    <label>Confirm Password</label>
+                    <input required="" type="password" name="passwordConfirm" ng-model="registration.passwordConfirm" class="md-input" aria-required="true" aria-invalid="true" dt-compare-to='registration.password'>
+                    <div data-ng-messages="registerForm.passwordConfirm.$error" role="alert">
+                        <div data-ng-message='dtCompareTo'>
+                        Passwords must match
+                        </div>
+                    </div>
+                </md-input-container>    
+            </form>        
+            <md-input-container class="flex md-block input">
+                <button class="md-raised md-primary md-button md-ink-ripple" type="button" data-ng-click="register()">
+                    <span>Sign Up!</span>
+                    <div class="md-ripple-container"></div>
+                </button>
+            </md-input-container>
+        </md-toolbar>
+    </md-content>
+</div>

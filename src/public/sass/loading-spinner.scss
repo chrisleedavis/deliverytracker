@@ -1,0 +1,13 @@
+@import "variables";
+
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0);
+  /* IE z-index :) */
+  display: none;
+}

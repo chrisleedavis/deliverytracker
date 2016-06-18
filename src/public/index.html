@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deliver IT</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/di">
+    <!-- build:libcss -->
+    <!-- endbuild -->
+    <!-- build:appcss -->
+    <!-- endbuild -->
+</head>
+<body>
+<div data-ng-app="dtApp" data-ng-cloak>
+    <div id="loading" class="loading-spinner"></div>
+    <div data-ng-controller="NavCtrl" class="init" data-ng-class="{'loaded': isLoaded.value}">
+        <ul class="navigation">
+            <img src="logo.png" alt="Deliver IT" class="navigation-icon" data-ng-click="redirect('/')" />
+            <li data-ng-click="redirect('/')" class="header">
+                <span>Deliver IT</span>
+            </li>
+            <li data-ng-click="redirect('/')" data-ng-class="{active: isActive(undefined)}">
+                <span>Home</span>
+            </li>
+            <li data-ng-click="redirect('/di/notifications')"
+                data-ng-class="{active: isActive('notifications')}"
+                data-ng-if="isAuthenticated()">
+                <span>Notifications</span>
+            </li>
+            <li data-ng-click="redirect('/di/history')"
+                data-ng-class="{active: isActive('history')}"
+                data-ng-if="isAuthenticated()">
+                <span>History</span>
+            </li>
+            <li data-ng-click="performLogAction()" data-ng-class="{active: isActive('login')}">
+                <span>{{logAction}}</span>
+            </li>
+        </ul>
+        <dt-alerts></dt-alerts>
+        <div data-ng-view></div>
+    </div>
+</div>
+<!-- build:lib -->
+<!-- endbuild -->
+<!-- build:app -->
+<!-- endbuild -->
+</body>
+</html>

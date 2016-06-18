@@ -1,0 +1,16 @@
+<div class="alert" role="alert" data-ng-class="alert.style">
+    <div data-ng-if="!!alert" class="alert-message">
+        <button type="button" class="alert-close" data-ng-click="clearAlert()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong class="mrs">{{alert.label}}!</strong>
+        <span data-ng-bind-html="alert.message"></span>
+        <div data-ng-if="alert.additionalInfo">
+            <ul class="mvm">
+                <li data-ng-repeat="info in alert.additionalInfo">
+                    <span data-ng-bind-html="info"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

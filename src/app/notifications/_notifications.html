@@ -1,0 +1,48 @@
+<div data-ng-controller="NotificationsCtrl">
+    <md-content class="md-padding">
+        <div class="notification">
+            <i><h4>Select the route</h4></i>
+            <md-input-container class="flex md-input-has-value select">
+                <label class="md-static">Routes</label>
+                <md-select data-ng-model="notification.routeId"
+                           aria-label="Routes"
+                           required="">
+                    <md-option data-ng-value="route._id"
+                               ng-repeat="route in routes">
+                        {{ "#" + route.routeNumber + ", Regular Driver: " + route.driver }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div data-ng-if="notification.routeId" class="notification mtl">
+            <i><h4>Select the driver</h4></i>
+            <md-input-container class="flex md-input-has-value select">
+                <label class="md-static">Available Drivers</label>
+                <md-select data-ng-model="notification.employeeId"
+                           aria-label="Available Drivers"
+                           required="">
+                    <md-option data-ng-value="employee._id"
+                               ng-repeat="employee in employees">
+                        {{ employee.firstName + " " + employee.lastName }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div data-ng-if="notification.employeeId" class="notification mtl">
+            <i><h4>Specify the email recipient</h4></i>
+            <md-input-container class="flex md-input-has-value select">
+                <label class="md-static">Email</label>
+                <input type="text" data-ng-model="notification.email" />
+            </md-input-container>
+        </div>
+        <div data-ng-if="notification.email" class="notification mtl">
+            <i><h4>Click the button below to send notification</h4></i>
+            <md-input-container class="flex md-block notification">
+                <button class="md-raised md-primary md-button md-ink-ripple" type="button" data-ng-click="notify()">
+                    <span>Notify</span>
+                    <div class="md-ripple-container"></div>
+                </button>
+            </md-input-container>
+        </div>
+    </md-content>
+</div>
