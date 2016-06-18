@@ -55,11 +55,11 @@ TODOS
 	a)  DONE   compareTo directive
 	b) DONE    signUp controller - 
 	c) DONE    emitLoginModel
-	d) does login controller need to be modified
+	d) 
 4.  DONE   styling issues on login - get rid of scroll.  modify signin-toolbar top position rule
 5.  DONE    styling on register - too much padding on form.  see above for fix
 6.  DONE   client side validation for password confirmation, email syntax
 
 7. FUTURE - server side validation for sign up
-8. check server side tests
-9. push/create push request to git
+8. 
+9. 
