@@ -5,7 +5,11 @@
         $window,
         $httpBackend,
         $timeout,
+<<<<<<< HEAD
         token;
+=======
+        token = "blahFooBar";
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
 
     beforeEach(module("dtApp"));
 
@@ -17,7 +21,10 @@
             $window = _$window_;
             $httpBackend = _$httpBackend_;
             $timeout = _$timeout_;
+<<<<<<< HEAD
             token = "blahFooBar";
+=======
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
             $controller("LoginCtrl", { $scope: $rootScope });
         }));
 

@@ -87,7 +87,11 @@ describe("Router Tests", () => {
             },
             router = new Router(express, server);
 
+<<<<<<< HEAD
         expect(configQueue.length).toEqual(28);
+=======
+        expect(configQueue.length).toEqual(29);
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         expect(configQueue[0]).toEqual("./dist");
         expect(configQueue[1]).toEqual("/");
         expect(configQueue[2]).toEqual("./src");
@@ -107,6 +111,7 @@ describe("Router Tests", () => {
         expect(configQueue[16]).toEqual("route: /api/notifications");
         expect(configQueue[17]).toEqual("post: sendNotification(request, response) {}");
         expect(configQueue[18]).toEqual("get: findAllNotifications(request, response) {}");
+<<<<<<< HEAD
         expect(configQueue[19]).toEqual("route: /api/logs");
         expect(configQueue[20]).toEqual("post: addLog(request, response) {}");
         expect(configQueue[21]).toEqual("route: /api/routes");
@@ -116,6 +121,18 @@ describe("Router Tests", () => {
         expect(configQueue[25]).toEqual("post: login(request, response) {}");
         expect(configQueue[26]).toEqual("route: /users");
         expect(configQueue[27]).toEqual("post: addUser(request, response) {}");
+=======
+        expect(configQueue[19]).toEqual("route: /api/users");
+        expect(configQueue[20]).toEqual("post: addUser(request, response) {}");
+        expect(configQueue[21]).toEqual("get: findAllUsers(request, response) {}");
+        expect(configQueue[22]).toEqual("route: /api/logs");
+        expect(configQueue[23]).toEqual("post: addLog(request, response) {}");
+        expect(configQueue[24]).toEqual("route: /api/routes");
+        expect(configQueue[25]).toEqual("post: addRoute(request, response) {}");
+        expect(configQueue[26]).toEqual("get: findAllRoutes(request, response) {}");
+        expect(configQueue[27]).toEqual("route: /login");
+        expect(configQueue[28]).toEqual("post: login(request, response) {}");
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
     });
 
     it("should handle jwt security properly if no auth token is provided", () => {

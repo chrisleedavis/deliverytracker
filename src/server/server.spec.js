@@ -80,6 +80,7 @@ describe("Server Tests", () => {
 
         expect(consoleLog.length).toEqual(9);
         expect(consoleLog[0]).toEqual("express is instantiated");
+<<<<<<< HEAD
         expect(consoleLog[1]).toEqual("livereload is instantiated");
         expect(consoleLog[2]).toEqual("using object");
         expect(consoleLog[3]).toEqual("express is injected");        
@@ -87,6 +88,15 @@ describe("Server Tests", () => {
         expect(consoleLog[5]).toEqual("mockDatabaseUrl");
         expect(consoleLog[6]).toEqual("listening on port: 8888");        
         expect(consoleLog[7]).toEqual("development mode, using liveReload");        
+=======
+        expect(consoleLog[1]).toEqual("express is injected");
+        expect(consoleLog[2]).toEqual("server is injected");
+        expect(consoleLog[3]).toEqual("mockDatabaseUrl");
+        expect(consoleLog[4]).toEqual("livereload is instantiated");
+        expect(consoleLog[5]).toEqual("using object");
+        expect(consoleLog[6]).toEqual("development mode, using liveReload");
+        expect(consoleLog[7]).toEqual("listening on port: 8888");
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         expect(consoleLog[8]).toEqual("Delivery Tracker server is now up...http://localhost:8888");
 
         globals.isProduction = isProduction;
@@ -100,11 +110,19 @@ describe("Server Tests", () => {
 
         expect(consoleLog.length).toEqual(9);
         expect(consoleLog[0]).toEqual("express is instantiated");
+<<<<<<< HEAD
         expect(consoleLog[1]).toEqual("./src/server/config/deliverytracker-key.pem");
         expect(consoleLog[2]).toEqual("./src/server/config/deliverytracker-cert.pem");
         expect(consoleLog[3]).toEqual("express is injected");        
         expect(consoleLog[4]).toEqual("server is injected");
         expect(consoleLog[5]).toEqual("mockDatabaseUrl");        
+=======
+        expect(consoleLog[1]).toEqual("express is injected");
+        expect(consoleLog[2]).toEqual("server is injected");
+        expect(consoleLog[3]).toEqual("mockDatabaseUrl");
+        expect(consoleLog[4]).toEqual("./src/server/config/deliverytracker-key.pem");
+        expect(consoleLog[5]).toEqual("./src/server/config/deliverytracker-cert.pem");
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         expect(consoleLog[6]).toEqual({ key: undefined, cert: undefined });
         expect(consoleLog[7]).toEqual(8888);
         expect(consoleLog[8]).toEqual("Delivery Tracker server is now up...https://localhost:8888");

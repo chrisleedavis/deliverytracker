@@ -29,8 +29,12 @@ Delivery Tracker is a system designed to provide consumers with the ability to v
 module.exports = {
 
     secureTransporter: {
+<<<<<<< HEAD
         auth: "YOUR AUTH TOKEN HERE"
         },
+=======
+        auth: "YOUR AUTH TOKEN HERE",
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         sender: "YOUR SENDER HERE"
     },
 
@@ -48,6 +52,7 @@ module.exports = {
 npm start --theme=[YOUR THEME HERE]
 ```
 
+<<<<<<< HEAD
 TODOS
 1.  DONE  convert password confirmation format to hidden (input type='password')
 2.  DONE    remove username, remove email confirmation (username IS email)
@@ -63,3 +68,5 @@ TODOS
 7. FUTURE - server side validation for sign up
 8. 
 9. 
+=======
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba

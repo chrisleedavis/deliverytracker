@@ -66,6 +66,7 @@
             });
 
             $timeout.flush();
+<<<<<<< HEAD
 
         });
 
@@ -84,6 +85,8 @@
 
             $timeout.flush();
 
+=======
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         });
 
         it("should resolve route properly when attempting to get to authenticated page and token is present", function() {

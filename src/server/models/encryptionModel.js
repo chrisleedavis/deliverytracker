@@ -1,10 +1,14 @@
 "use strict";
 
+<<<<<<< HEAD
 const bcrypt = require("bcrypt-nodejs"),
     config = require("../config/config"),
     jwt = require("jsonwebtoken"),
     crypto = require("crypto"),
     algorithm = "aes-256-ctr";
+=======
+const bcrypt = require("bcrypt-nodejs");
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
 
 module.exports = {
 
@@ -28,6 +32,7 @@ module.exports = {
         });
     },
 
+<<<<<<< HEAD
     encryptToken: (user) => {
 
         //encrypt auth token to hide payload from dev tool users
@@ -41,6 +46,8 @@ module.exports = {
 
     },
 
+=======
+>>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
     compareHash: (hash1, hash2) => {
 
         return new Promise((resolve, reject) => {
