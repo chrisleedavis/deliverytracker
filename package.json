@@ -76,6 +76,7 @@
     "coveralls": "gulp coveralls",
     "build": "gulp build",
     "test": "gulp test",
-    "start": "gulp start"
+    "start": "gulp start",
+    "travis": "gulp ngTemplates test --prod"
   }
 }

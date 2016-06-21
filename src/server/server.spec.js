@@ -87,7 +87,7 @@ describe("Server Tests", () => {
         expect(consoleLog[5]).toEqual("mockDatabaseUrl");
         expect(consoleLog[6]).toEqual("listening on port: 8888");        
         expect(consoleLog[7]).toEqual("development mode, using liveReload");        
-        expect(consoleLog[8]).toEqual("Delivery Tracker server is now up...http://localhost:8888");
+        expect(consoleLog[8]).toEqual("Delivery Tracker server is now up...https://localhost:8888");
 
         globals.isProduction = isProduction;
     });
