@@ -1,19 +1,11 @@
 @import "variables";
 
 .sign-in-toolbar {
-<<<<<<< HEAD
   /*position: fixed;*/
   width: 70%;
   min-width: 215px;
   max-width: 400px;
   top: 75px;
-=======
-  position: fixed;
-  width: 70%;
-  min-width: 215px;
-  max-width: 400px;
-  top: 175px;
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
 }
 .sign-in-toolbar .header {
   background-color: $secondary-color !important;
@@ -82,7 +74,6 @@
   max-width: 100px;
   position: absolute;
   right: 0;
-<<<<<<< HEAD
 }
 
 .sign-up-link {
@@ -91,7 +82,4 @@
   background-color: white;
   color: #747474;
   font-size: medium;
-
-=======
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
 }
