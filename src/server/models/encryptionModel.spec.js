@@ -51,6 +51,8 @@ describe("Encryption Model Tests", () => {
                 callback(err, isMatch);
             }
         });
+
+        mockery.registerMock("../config/config", { secret: "BlahTest" });
     });
 
     afterEach(() => {
