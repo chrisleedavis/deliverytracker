@@ -23,11 +23,7 @@ var gulp = require("gulp"),
         gulp.watch(serverPath, server.start.bind(server));
 
         //add watches for application
-<<<<<<< HEAD
         gulp.watch(["./src/public/**/*.{html,css,scss,png,ico}", "./src/app/**/*.js"], ["bundle-app-css","replace"]);
-=======
-        gulp.watch("./src/public/**/*.{html,css,scss,png,ico}", ["bundle-app-css","replace"]);
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         gulp.watch(["./src/**/*.html", "!./src/public/**/*.html"], ["ngTemplates"]);
     };
 
