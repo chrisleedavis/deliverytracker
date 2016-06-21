@@ -9,12 +9,7 @@ const mongoose = require("mongoose"),
                 unique: true,
                 required: true
             },
-<<<<<<< HEAD
             password: requiredAttr            
-=======
-            password: requiredAttr,
-            createdBy: requiredAttr
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         },
         {
             timestamps: true //get createdAt, updatedAt fields
