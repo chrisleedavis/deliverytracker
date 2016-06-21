@@ -64,11 +64,7 @@
                     },
                     responseError: function (response) {
 
-<<<<<<< HEAD
                         if (response.config && (response.config.url === "login" || response.config.url === "users")) {
-=======
-                        if (response.config && response.config.url === "login") {
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
                             delete $window.sessionStorage.token;
                         }
 
