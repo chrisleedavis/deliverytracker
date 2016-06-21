@@ -6,13 +6,13 @@ const express = require("express"),
     GlobalErrorHandler = require("./globalErrorHandler"),
     config = require("./config/config"),
     mongoose = require("mongoose"),
+    server = express(),
     registerRouter = () => {
         new Router(express, server);
         new GlobalErrorHandler({ server: server });
         mongoose.Promise = Promise;
         mongoose.connect(config.databaseUrl);
     };
-    server = express();
 
 if (!globals.isProduction) {
     const liveReload = require("connect-livereload");
