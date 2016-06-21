@@ -6,7 +6,6 @@ const express = require("express"),
     GlobalErrorHandler = require("./globalErrorHandler"),
     config = require("./config/config"),
     mongoose = require("mongoose"),
-    server = express(),
     registerRouter = () => {
         new Router(express, server);
         new GlobalErrorHandler({ server: server });
