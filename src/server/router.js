@@ -49,15 +49,7 @@ class Router {
 
         server.route("/api/notifications")
             .post(notifications.sendNotification)
-<<<<<<< HEAD
             .get(notifications.findAllNotifications);            
-=======
-            .get(notifications.findAllNotifications);
-
-        server.route("/api/users")
-            .post(users.addUser)
-            .get(users.findAllUsers);
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
 
         server.route("/api/logs")
             .post(logs.addLog);
@@ -68,12 +60,9 @@ class Router {
 
         server.route("/login")
             .post(login.login);
-<<<<<<< HEAD
 
         server.route("/users")
             .post(users.addUser);
-=======
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
     }
 }
 
