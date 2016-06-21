@@ -8,12 +8,8 @@
             var routeResolver = {
                     resolveRoute: ["$q", "$route", "$window", "$location", function($q, $route, $window, $location) {
                         var defer = $q.defer();
-
-<<<<<<< HEAD
+                        
                         if ($route.current.params.page === "login" || $route.current.params.page === "signUp" || $window.sessionStorage.token) {
-=======
-                        if ($route.current.params.page === "login" || $window.sessionStorage.token) {
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
                             defer.resolve(true);
                         } else {
                             defer.reject(false);
