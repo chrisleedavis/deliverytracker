@@ -25,7 +25,8 @@ Delivery Tracker is a system designed to provide consumers with the ability to v
 ./src/server/config/config.js should be used to configure environment
 
 #### sample config.js
-```module.exports = {
+```
+module.exports = {
 
     secureTransporter: {
         auth: "YOUR AUTH TOKEN HERE",
