@@ -25,16 +25,10 @@ Delivery Tracker is a system designed to provide consumers with the ability to v
 ./src/server/config/config.js should be used to configure environment
 
 #### sample config.js
-```
-module.exports = {
+```module.exports = {
 
     secureTransporter: {
-<<<<<<< HEAD
-        auth: "YOUR AUTH TOKEN HERE"
-        },
-=======
         auth: "YOUR AUTH TOKEN HERE",
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
         sender: "YOUR SENDER HERE"
     },
 
@@ -51,22 +45,3 @@ module.exports = {
 ```
 npm start --theme=[YOUR THEME HERE]
 ```
-
-<<<<<<< HEAD
-TODOS
-1.  DONE  convert password confirmation format to hidden (input type='password')
-2.  DONE    remove username, remove email confirmation (username IS email)
-3.  code coverage for "new stuff" (signUp, etc.)
-	a)  DONE   compareTo directive
-	b) DONE    signUp controller - 
-	c) DONE    emitLoginModel
-	d) 
-4.  DONE   styling issues on login - get rid of scroll.  modify signin-toolbar top position rule
-5.  DONE    styling on register - too much padding on form.  see above for fix
-6.  DONE   client side validation for password confirmation, email syntax
-
-7. FUTURE - server side validation for sign up
-8. 
-9. 
-=======
->>>>>>> 6e9e0b22bfc1503dbbb8653dc253a5ee0b5478ba
