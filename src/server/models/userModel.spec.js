@@ -83,16 +83,16 @@ describe("User Model Tests", () => {
 
     it("should create schema properly", () => {
 
-        const data = { username: "foobar@test.com", password: "itWorks" },
+        const data = { email: "foobar@test.com", password: "itWorks" },
             user = new User(data);
 
-        expect(user.username).toEqual(data.username);
+        expect(user.email).toEqual(data.email);
         expect(user.password).toEqual(data.password);
     });
 
     it("should authenticate properly when hashes match", () => {
 
-        credentials.username = "fooBar@test.com";
+        credentials.email = "fooBar@test.com";
         credentials.password = "itWorks";
         user = { password: "itWorks" };
         User.login(credentials, callback);
@@ -101,8 +101,8 @@ describe("User Model Tests", () => {
         expect(authQueue[0]["1"]).toEqual(user); //proves they're authenticated if user returned
     });
 
-    it("should authenticate properly when passwords don't match", () => {
-        credentials.username = "fooBar@test.com";
+    it("should not authenticate properly when passwords don't match", () => {
+        credentials.email = "fooBar@test.com";
         credentials.password = "itWorks";
         user = { password: "doesntWork" };
         User.login(credentials, callback);
