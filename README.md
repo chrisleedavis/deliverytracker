@@ -54,4 +54,4 @@ OPEN ISSUES:
 2.  log creation requires token
 3.  DONE     login screen extra button
 4.  DONE     username in user model needs to be fixed/changed to email
-5.  ERN TO DO   center body elements on login and register
+5.  DONE   center body elements on login and register
