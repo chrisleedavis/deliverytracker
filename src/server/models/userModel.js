@@ -4,7 +4,9 @@ const mongoose = require("mongoose"),
     encryption = require("./encryptionModel"),
     requiredAttr = {type: String, required: true},
     userSchema = new mongoose.Schema({
-            username: {
+            firstname: requiredAttr,
+            lastname: requiredAttr,
+            email: {
                 type: String,
                 unique: true,
                 required: true

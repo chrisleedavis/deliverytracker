@@ -5,7 +5,8 @@
   width: 70%;
   min-width: 215px;
   max-width: 400px;
-  top: 75px;
+  margin: 10% auto;
+  /*top: 75px;*/
 }
 .sign-in-toolbar .header {
   background-color: $secondary-color !important;
@@ -29,7 +30,7 @@
     font-size: 30px !important;
   }
   .sign-in-toolbar {
-    left: 30%;
+    /*left: 23%;*/
   }
 }
 @media (min-width: 661px) and (max-width: 750px) {
@@ -37,7 +38,7 @@
     font-size: 25px !important;
   }
   .sign-in-toolbar {
-    left: 25%;
+    /*left: 20%;*/
   }
 }
 @media (min-width: 572px) and (max-width: 660px) {
@@ -45,7 +46,7 @@
     font-size: 20px !important;
   }
   .sign-in-toolbar {
-    left: 20%;
+    /*left: 17%;*/
   }
 }
 @media (min-width: 315px) and (max-width: 571px) {
@@ -53,7 +54,7 @@
     font-size: 15px !important;
   }
   .sign-in-toolbar {
-    left: 15%;
+    /*left: 15%;*/
   }
 }
 @media (max-width: 314px) {
@@ -61,12 +62,12 @@
     font-size: 15px !important;
   }
   .sign-in-toolbar {
-    left: 15%;
+    /*left: 15%;*/
   }
 }
 @media (max-height: 460px) {
   .sign-in-toolbar {
-    top: 125px;
+    top: 75px;
   }
 }
 .sign-in-toolbar button {
